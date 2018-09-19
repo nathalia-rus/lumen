@@ -1,0 +1,62 @@
+/* This applies from 0px to 600px */
+
+
+.appTitle {
+position: fixed;
+ color: white;
+  padding-left: 2px;
+  margin-top: -3.7%;
+  font-size: 20px;
+  font-weight: 200;
+  margin-left: 35%;
+  font-family: avenir next;
+   letter-spacing: 10px;
+} 
+
+.logoContainer{
+  margin-top: -20%;
+  display: flex;
+  position: fixed;
+}
+
+.myProfileLogo {
+margin-top: 7%;
+padding-left: 25%;
+width: 12%;
+height: 12%;
+}
+
+.inspirationLogo {
+margin-top: 8%;
+margin-left: 230%;
+width: 20%;
+height: 22%;
+}
+
+.circleContainer{
+  margin-left: 40%;
+  display: flex;
+  justify-content: center;
+  margin-top: -13%;
+  position: fixed;
+}
+
+.GreyCircle{
+  width: 30%;
+  height: 30%;
+}
+.WhiteCircle{
+  width: 30%;
+  height: 30%;
+}
+
+/* .center { align-self: center; } */
+
+/* This applies from 600px onwards */
+
+@media (min-width: 600px) {
+.appTitle  {
+    color: white;
+  }
+}
+

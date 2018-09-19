@@ -1,0 +1,35 @@
+#donationsNum {
+  margin-left: -3%;
+  padding-bottom: 5%;
+}
+
+#donationsAdd {
+  margin-left: -3%;
+}
+
+#donationsText{
+  font-size: 17px;
+}
+
+#donationsLine{
+  margin-left: 3%;
+  width: 53%;
+  height: 1px;
+}
+.donationsList p {
+  text-align: left;
+  margin-top: -2%;
+  margin-left: 6%;
+  font-family: avenir next;
+  font-weight: 100;
+  font-size: 15px;
+}
+
+#totalDonations{
+  font-weight: 500
+}
+/* 
+.hand{
+  height: 7%;
+  width:7%;
+} */

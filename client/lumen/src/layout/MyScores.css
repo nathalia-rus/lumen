@@ -1,0 +1,46 @@
+.add {
+  height: 10%;
+  width: 10%;
+  padding-left: 20%;
+}
+
+.substract {
+  padding-right: 20%;
+  height: 10%;
+  width: 10%
+}
+
+.title {
+  text-align: center;
+  margin-top: 29%;
+  padding-bottom: 4%;
+  font-weight: 100;
+  letter-spacing: 3px;
+  font-family: avenir next;
+}
+
+h1 {
+  font-weight: 100;
+}
+
+.score{
+  margin-top: -3%;
+  font-family: avenir next;
+}
+
+.scorecontainer {
+  display: flex;
+  justify-content: left;
+  margin-left: 25%;
+  
+}
+
+.desc {
+  padding-left: 10px;
+  font-size: 12px;
+  font-weight: 100;
+}
+
+.ScoreCont{
+  margin-top: -23%;
+}
