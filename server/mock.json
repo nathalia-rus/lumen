@@ -1,0 +1,29 @@
+
+{
+  "user": [
+    {
+      "id": "1",
+      "username": "Nathalia",
+      "email": "nathaliarus@live.fr",
+      "scores": {
+        "kindDeeds": "6",
+        "smiles": "3",
+        "donations": "$20"
+      },
+      "list": [
+        "list 1 text blah blah blah",
+        "list 2 text blah blah blah",
+        "list 3 text blah blah blah" 
+      ],
+      "notes": [
+        "note 1 text blah blah blah",
+        "note 2 text blah blah blah",
+        "note 3 text blah blah blah"
+      ],
+      "donations": {
+        "amount": [ "7", "10", "5" ],
+        "institution": [ "amnesty international", "Mededins sans frontières", "WWF"]
+      }
+    }
+  ]
+}
