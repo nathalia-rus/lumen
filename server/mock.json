@@ -1,6 +1,4 @@
 
-{
-  "user": [
     {
       "id": "1",
       "username": "Nathalia",
@@ -25,5 +23,5 @@
         "institution": [ "amnesty international", "Mededins sans frontières", "WWF"]
       }
     }
-  ]
-}
+
+
