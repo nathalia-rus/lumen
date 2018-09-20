@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../../layout/MyList.css'
-const add = require("../../assets/add.png");
-const whiteLine = require("../../assets/whiteLine.png")
+import './MyList.css'
+const add = require("../../../assets/add.png");
+const whiteLine = require("../../../assets/whiteLine.png")
 
 class MyList extends Component {
     constructor(props) {

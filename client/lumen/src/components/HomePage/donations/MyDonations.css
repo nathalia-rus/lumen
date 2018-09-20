@@ -9,10 +9,11 @@
 
 #donationsText{
   font-size: 17px;
+  margin-left: -3%;
 }
 
 #donationsLine{
-  margin-left: 3%;
+  margin-left: 5%;
   width: 53%;
   height: 1px;
 }

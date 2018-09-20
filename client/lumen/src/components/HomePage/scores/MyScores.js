@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../../layout/MyScores.css'
-const add = require("../../assets/add.png");
-const substract = require("../../assets/substract.png");
+import './MyScores.css'
+const add = require("../../../assets/add.png");
+const substract = require("../../../assets/substract.png");
 
 class MyScores extends Component {
     constructor(props) {

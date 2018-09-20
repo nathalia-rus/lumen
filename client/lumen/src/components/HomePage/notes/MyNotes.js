@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import '../../layout/MyNotes.css'
-const add = require("../../assets/add.png");
-const whiteLine = require("../../assets/whiteLine.png");
-const spark = require('../../assets/glittery.png')
+import './MyNotes.css'
+const add = require("../../../assets/add.png");
+const whiteLine = require("../../../assets/whiteLine.png");
+const spark = require('../../../assets/glittery.png')
 
 class MyNotes extends Component {
     constructor(props) {

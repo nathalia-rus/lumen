@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../../layout/MyDonations.css'
-const add = require("../../assets/add.png");
-const whiteLine = require("../../assets/whiteLine.png");
+import './MyDonations.css'
+const add = require("../../../assets/add.png");
+const whiteLine = require("../../../assets/whiteLine.png");
 /* const hand =require("../assets/hand.svg"); */
 
 class MyDonations extends Component {

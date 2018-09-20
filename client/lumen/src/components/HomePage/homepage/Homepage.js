@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import MyList from '../list/MyList';
+import MyNotes from '../notes/MyNotes';
+import MyScores from '../scores/MyScores';
+import MyDonations from '../donations/MyDonations';
 
-class EditList extends Component {
+class Homepage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,8 +28,11 @@ class EditList extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Hello World</h3>
+          <div className="content"> 
+            <MyScores />
+            <MyList />
+            <MyNotes />
+            <MyDonations />  
             </div>
         );
     }
@@ -43,4 +50,4 @@ class EditList extends Component {
     }
 }
 
-export default EditList;
+export default Homepage;

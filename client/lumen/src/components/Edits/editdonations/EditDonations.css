@@ -1,0 +1,22 @@
+.drop {
+  margin-top: 20%;
+  margin-left: 10%;
+}
+
+.drop select {
+font-size:14px;
+color: white;
+}
+
+
+.addDonation {
+  height: 20%;
+  width: 20%;
+}
+
+
+
+.addDonationP{
+  margin-left: 80%;
+  margin-top: -5%;
+}
