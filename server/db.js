@@ -11,12 +11,12 @@ const db = mongoose.connection;
 
 // SCHEMA
 
-let lumen = new mongoose.Schema({
+let lumenUserData = new mongoose.Schema({
   id: String,
   username: String,
   email: String,
   scores: {
-    kindDeeds: Number,
+    goodActions: Number,
     smiles: Number,
     donations: Number
   },
@@ -31,6 +31,6 @@ let lumen = new mongoose.Schema({
 });
 
 
-let Lumen = mongoose.model("Lumen", lumen);
+let LumenUserData = mongoose.model("LumenUserData", lumenUserData);
 
-module.exports = { db, lumen, Lumen };
+module.exports = { db, lumenUserData, LumenUserData };
