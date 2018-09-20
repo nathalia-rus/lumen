@@ -14,18 +14,6 @@ class Homepage extends Component {
     static defaultProps = {
     }
 
-    componentWillMount() {
-    }
-
-    componentWillReceiveProps(nextProps) {
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-    }
-
-    componentWillUpdate(nextProps, nextState) {
-    }
-
     render() {
         return (
           <div className="content"> 
@@ -37,17 +25,6 @@ class Homepage extends Component {
         );
     }
 
-    componentDidMount() {
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-    }
-
-    componentWillUnmount() {
-    }
-
-    componentDidCatch(error, info) {
-    }
 }
 
 export default Homepage;

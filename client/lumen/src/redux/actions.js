@@ -18,7 +18,7 @@ const createNote = note => ({
   content: note.content
 });
 
-const getNotes = notes => ({
+const getNotes = notes => ({ // notes = in app.js, data.notes passed
   type: "GET_NOTES",
   notes: notes
 })
