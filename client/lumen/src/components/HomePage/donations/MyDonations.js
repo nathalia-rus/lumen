@@ -11,7 +11,7 @@ class MyDonations extends Component {
 renderDonations() {
   let toMap = zip(Object.entries(this.props.donations)[0][1], Object.entries(this.props.donations)[1][1]);
   return toMap.map( item => {
-    return ( <p> 🌱 $ <i> { item }  </i> </p >  )
+    return (<p> 🌱 $<i> {item.join('   -   ') }  </i> </p >  )
   })
 };
 
