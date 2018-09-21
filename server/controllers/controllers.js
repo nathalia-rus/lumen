@@ -9,38 +9,38 @@ exports.getUser = (req, res) => {
 };
 
 
-exports.updateLumenUserList = async (req, res) => {
-  const err = await model.updateLumenUserList(req.body).catch(() => true);
+exports.updateList = async (req, res) => {
+  const err = await model.updateList(req.body).catch(() => true);
   if (err) return res.sendStatus(500);
   return res.sendStatus(201);
 };
 
-exports.updateLumenUserNotes = async (req, res) => {
-  const err = await model.updateLumenUserNotes(req.body).catch(() => true);
+exports.updateNotes = async (req, res) => {
+  const err = await model.updateNotes(req.body).catch(() => true);
   if (err) return res.sendStatus(500);
   return res.sendStatus(201);
 };
 
-exports.updateLumenUserDonations = async (req, res) => {
-  const err = await model.updateLumenUserDonations(req.body).catch(() => true);
+exports.updateDonations = async (req, res) => {
+  const err = await model.updateDonations(req.body).catch(() => true);
   if (err) return res.sendStatus(500);
   return res.sendStatus(201);
 };
 
-exports.deleteLumenListItem = async (req, res) => {
-  const err = await model.deleteLumenListItem(req.body).catch(() => true);
+exports.deleteListItem = async (req, res) => {
+  const err = await model.deleteListItem(req.body).catch(() => true);
   if (err) return res.sendStatus(500);
   return res.sendStatus(201);
 };
 
-exports.deleteLumenNote = async (req, res) => {
-  const err = await model.deleteLumenNote(req.body).catch(() => true);
+exports.deleteNote = async (req, res) => {
+  const err = await model.deleteNote(req.body).catch(() => true);
   if (err) return res.sendStatus(500);
   return res.sendStatus(201);
 };
 
-exports.deleteLumenDonation = async (req, res) => {
-  const err = await model.deleteLumenDonation(req.body).catch(() => true);
+exports.deleteDonation = async (req, res) => {
+  const err = await model.deleteDonation(req.body).catch(() => true);
   if (err) return res.sendStatus(500);
   return res.sendStatus(201);
 };

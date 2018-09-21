@@ -1,16 +1,6 @@
-const db = require('../db');
+const db = require('../db_');
 
-// GET ALL
-
-
-/* exports.getUser = () => {
-  return new Promise((resolve, reject) => {
-    db.User.find({}, (err, User) => {
-      if (err) reject(err);
-      resolve(User);
-    });
-  });
-}; */
+// GET ALL DATA
 
 exports.getUser = () => {
   console.log(db);
@@ -20,15 +10,15 @@ exports.getUser = () => {
 
 // UPDATE / CREATE
 
-exports.updateLumenUserList = (id, req) => {
+exports.updateList = (id, req) => {
   db.User.update({ _id: id }, { $push: { list: req.body.data } });
 };
 
-exports.updateLumenUserNotes = (id, req) => {
+exports.updateNotes = (id, req) => {
   db.User.update({ _id: id }, { $push: { notes: req.body.data } });
 };
 
-exports.updateLumenUserDonations = (id, req) => {
+exports.updateDonations = (id, req) => {
   db.User.update({ _id: id },
     {
       $push: {

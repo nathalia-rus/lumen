@@ -58,6 +58,8 @@ console.log(User);
 // nath.save();
 /* console.log(db.nath.find({})); */
 
+// if you save it's ok it creates
+
 module.exports = {
-  db, userSchema, User, //nath,
+  db, userSchema, User
 };
