@@ -5,22 +5,16 @@ import MyScores from '../scores/MyScores';
 import MyDonations from '../donations/MyDonations';
 
 class Homepage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    };
 
-    static defaultProps = {
-    }
+// pass props to components 
 
     render() {
         return (
           <div className="content"> 
-            <MyScores />
-            <MyList />
-            <MyNotes />
-            <MyDonations />  
+            <MyScores scores = {this.props.scores} />
+            <MyList list = {this.props.list} />
+            <MyNotes notes ={ this.props.notes}/>
+            <MyDonations donations = {this.props.donations} />   */}
             </div>
         );
     }

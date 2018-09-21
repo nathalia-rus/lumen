@@ -9,35 +9,55 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_SCORES":
     return {
-      ...action.scores
-    };
-    case "CREATE_LIST_ITEM":
-    return {
       ...state,
-      content: action.content
+      scores: {
+        ...action.scores
+      }
     };
+/*     case "CREATE_LIST_ITEM":
+      return {
+        ...state,
+        list: {
+          ...action.listItem
+        }
+      }; */
     case "GET_LIST_ITEMS":
     return {
-      ...action.listItems
+      ...state,
+      list: [
+        ...action.list
+      ] 
     }
-    case "CREATE_NOTE":
+/*     case "CREATE_NOTE":
     return {
     ...state, 
      content: action.content
-    };
+    }; */
     case "GET_NOTES":
     return {
-      ...action.notes
+      ...state,
+      notes: [
+        ...action.notes
+      ]
+ 
     };
-    case "CREATE_DONATION":
+/*     case "CREATE_DONATION":
     return {
       ...state,
         amount: action.amount,
         institution: action.institution
-    };
+    }; */
     case "GET_DONATIONS":
     return {
-      ...action.donations
+      ...state,
+      donations: {
+        amount: {
+          ...action.amount
+        },
+        institution: {
+          ...action.institution
+        }
+      }
     };
     default: 
     return state

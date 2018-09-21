@@ -3,44 +3,45 @@
 
 const getScores = scores => ({
   type: "GET_SCORES",
-  scores: scores
+  scores
 });
 
 // list
 
-const createListItem = listItem => ({
+ const createListItem = listItem => ({
   type: "CREATE_LIST_ITEM",
-  content: listItem.content
+  list: listItem
 });
-
-const getListItems = listItems => ({
+ 
+const getListItems = list => ({
   type: "GET_LIST_ITEMS",
-  listItems: listItems
+  list: list
 });
 
 // notes
 
-const createNote = note => ({
+ const createNote = note => ({
   type: "CREATE_NOTE",
-  content: note.content
-});
+  note: note
+}); 
 
-const getNotes = notes => ({ // notes = in app.js, data.notes passed
+const getNotes = notes => ({ 
   type: "GET_NOTES",
   notes: notes
 })
 
 // donations
 
-const createDonation = donation => ({
+const createDonation = (amount, institution) => ({
   type: "CREATE_DONATION",
-  amount: donation.amount,
-  institution: donation.institution
+  amount: amount,
+  institution: institution
 });
 
-const getDonations = donations => ({
+const getDonations = (amount, institution) => ({
   type: "GET_DONATIONS",
-  donations: donations
+  amount: amount,
+  institution: institution
 })
-
-export { getScores, createListItem, getListItems, createNote, getNotes, createDonation, getDonations}
+ 
+export { getScores, createListItem, getListItems, createNote, getNotes, createDonation, getDonations }

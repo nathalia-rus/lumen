@@ -10,10 +10,40 @@ class MyScores extends Component {
         };
     };
 
-    static defaultProps = {
+
+    render() {
+        return (
+            <div className = "ScoreCont">
+            <h3 className= "title">KIND DEEDS</h3>
+            <div className = "scorecontainer"> 
+            <img className="substract" src={substract} />
+              <h1 className="score"> {this.props.scores.goodActions} </h1>
+            <img className="add" src={add} />
+              <p className="desc" > good actions</p>
+            </div>
+            <div className="scorecontainer">
+              <img className="substract" src={substract} />
+              <h1 className="score"> {this.props.scores.smiles} </h1>
+              <img className="add" src={add} />
+              <p className="desc" > smiles</p>
+            </div>
+            <div className="scorecontainer">
+              <img className="substract" src={substract} />
+              <h1 className="score" id="donationsNum"> ${this.props.scores.donations} </h1>
+              <img className="add " id="donationsAdd" src={add}/>
+              <p className="desc">  donations </p>
+            </div>
+            </div>
+        );
     }
 
-    componentWillMount() {
+}
+
+export default MyScores;
+
+// here in case of need
+
+/*     componentWillMount() {
     }
 
     componentWillReceiveProps(nextProps) {
@@ -23,45 +53,19 @@ class MyScores extends Component {
     }
 
     componentWillUpdate(nextProps, nextState) {
-    }
+    } */
 
-    render() {
-        return (
-            <div className = "ScoreCont">
-            <h3 className= "title">KIND DEEDS</h3>
-            <div className = "scorecontainer"> 
-            <img className="substract" src={substract} />
-            <h1 className = "score"> 9 </h1>
-            <img className="add" src={add} />
-              <p className="desc" > good actions</p>
-            </div>
-            <div className="scorecontainer">
-              <img className="substract" src={substract} />
-              <h1 className="score"> 9 </h1>
-              <img className="add" src={add} />
-              <p className="desc" > smiles</p>
-            </div>
-            <div className="scorecontainer">
-              <img className="substract" src={substract} />
-              <h1 className="score" id= "donationsNum"> $9 </h1>
-              <img className="add " id="donationsAdd" src={add}/>
-              <p className="desc">  donations </p>
-            </div>
-            </div>
-        );
-    }
 
-    componentDidMount() {
-    }
+    // after render:
 
-    componentDidUpdate(prevProps, prevState) {
-    }
-
-    componentWillUnmount() {
-    }
-
-    componentDidCatch(error, info) {
-    }
+/* componentDidMount() {
 }
 
-export default MyScores;
+componentDidUpdate(prevProps, prevState) {
+}
+
+componentWillUnmount() {
+}
+
+componentDidCatch(error, info) {
+} */

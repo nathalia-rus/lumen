@@ -8,25 +8,42 @@ import EditList from '../components/Edits/editlist/EditList'
 import EditNotes from '../components/Edits/editnotes/EditNotes';
 import EditDonations from '../components/Edits/editdonations/EditDonations';
 
-import { createListItem, getListItems, createNote, getNotes, createDonation, getDonations } from '../redux/actions';
+import { getScores, createListItem, getListItems, createNote, getNotes, createDonation, getDonations } from '../redux/actions';
 
 import { connect } from "react-redux"; 
 
 class App extends Component {
 
-   getUserData = () => {
+  getScores_ = () => {
+    return fetch('http://localhost:3010/') 
+      .then(res => res.json())
+      .then(data => {
+       return this.props.getScores(data[0].scores);
+      })
+  } 
+
+  getList_ = () => {
     return fetch('http://localhost:3010/')
       .then(res => res.json())
       .then(data => {
-        console.log(data[0]);
-        this.props.getListItems(data[0].list);
-        this.props.getNotes(data[0].notes); // will be passed as arg (notes) in redux action
-        this.props.getDonations(data[0].donations);
+        console.log(this.props.getListItems(data[0].list));
+        return this.props.getListItems(data[0].list);
+      })
+  } 
+
+  getNotes_ = () => {
+    return fetch('http://localhost:3010/')
+      .then(res => res.json())
+      .then(data => {
+        console.log(this.props.getNotes(data[0].notes));
+        return this.props.getNotes(data[0].notes);
       })
   } 
 
 componentDidMount() {
-  this.getUserData();
+  this.getScores_();
+  this.getList_();
+  this.getNotes_();
 }
 
   render() {
@@ -34,7 +51,14 @@ componentDidMount() {
    <Router > 
     <div> 
       <Header />
-      <Route exact path = "/" render = { () => ( <Homepage/>) } /> 
+      <Route exact path = "/" render = {  ( props ) => ( 
+      <Homepage 
+        scores={this.props.scores}
+        list={this.props.list}
+        notes = {this.props.notes}
+        donations = {this.props.getDonations}
+      />) 
+      } /> 
       <Route exact path="/list" render={() => (<EditList/>)} /> 
       <Route exact path="/notes" render={() => (<EditNotes />)} /> 
       <Route exact path="/donations" render={() => (<EditDonations />)} /> 
@@ -45,23 +69,49 @@ componentDidMount() {
 }
 
  const mapStateToProps = state => ({
+  scores: state.scores,
   list: state.list,
   notes: state.notes,
   donations: state.donations
- });
+ }); 
 
 const mapDispatchToProps = dispatch => ({
-  createListItem: listItem => dispatch(createListItem(listItem)),
-  getListItems: listItems => dispatch(getListItems(listItems)),
-  createNote: note => dispatch(createNote(note)),
-  getNotes: notes => dispatch(getNotes(notes)),
-  createDonation: donation => dispatch(createDonation(donation)),
-  getDonations: donations => dispatch(getDonations(donations))
-});
 
+  // scores
+  getScores: scores => dispatch(getScores(scores)),
+  // to add : inc and dec
+
+  // list
+  getListItems: list => dispatch(getListItems(list)),
+  createListItem: listItem => dispatch(createListItem(listItem)),
+
+  // notes
+  getNotes: notes => dispatch(getNotes(notes)),
+  createNote: note => dispatch(createNote(note)),
+
+  // donations
+  getDonations: donations => dispatch(getDonations(donations)),
+  createDonation: donation => dispatch(createDonation(donation))
+
+});
 
 export default connect(
   mapStateToProps, 
   mapDispatchToProps
 )(App);
 
+
+
+
+/*  getUserData = () => {
+    return fetch('http://localhost:3010/')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data[0]);
+        this.props.getScores(data[0].scores);
+        this.props.getListItems(data[0].list);
+        this.props.getNotes(data[0].notes); // will be passed as arg (notes) in redux action
+        this.props.getDonations(data[0].donations);
+      })
+  }    
+ */
