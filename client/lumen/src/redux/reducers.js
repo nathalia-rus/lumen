@@ -2,7 +2,10 @@ const initialState = {
   scores: {},
   list:[],
   notes:[],
-  donations:{}
+  donations: {
+    amount: [],
+    institution: []
+  }
 }
 
 const reducer = (state = initialState, action) => {
@@ -51,14 +54,14 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       donations: {
-        amount: {
+        amount: [
           ...action.amount
-        },
-        institution: {
+        ],
+        institution: [
           ...action.institution
-        }
+        ]
       }
-    };
+    }
     default: 
     return state
   }

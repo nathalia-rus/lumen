@@ -14,7 +14,7 @@ class Homepage extends Component {
             <MyScores scores = {this.props.scores} />
             <MyList list = {this.props.list} />
             <MyNotes notes ={ this.props.notes}/>
-            <MyDonations donations = {this.props.donations} />   */}
+            <MyDonations donations = {this.props.donations} />   
             </div>
         );
     }

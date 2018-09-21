@@ -43,5 +43,7 @@ const getDonations = (amount, institution) => ({
   amount: amount,
   institution: institution
 })
+
+
  
-export { getScores, createListItem, getListItems, createNote, getNotes, createDonation, getDonations }
+export { getScores, createListItem, getListItems, createNote, getNotes, createDonation, getDonations  }

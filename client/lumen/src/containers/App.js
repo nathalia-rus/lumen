@@ -40,10 +40,23 @@ class App extends Component {
       })
   } 
 
+//  return { data[0].donations[0].amount ; data[0].donations[0].institution}
+
+  getDonations_ = () => {
+    return fetch('http://localhost:3010/')
+    .then(res => res.json())
+    .then(data => {
+      return this.props.getDonations(data[0].donations[0].amount, data[0].donations[0].institution)
+    } 
+  )
+}
+
+
 componentDidMount() {
   this.getScores_();
   this.getList_();
   this.getNotes_();
+  this.getDonations_();
 }
 
   render() {
@@ -56,7 +69,7 @@ componentDidMount() {
         scores={this.props.scores}
         list={this.props.list}
         notes = {this.props.notes}
-        donations = {this.props.getDonations}
+        donations={this.props.donations}
       />) 
       } /> 
       <Route exact path="/list" render={() => (<EditList/>)} /> 
@@ -72,7 +85,7 @@ componentDidMount() {
   scores: state.scores,
   list: state.list,
   notes: state.notes,
-  donations: state.donations
+   donations: state.donations,
  }); 
 
 const mapDispatchToProps = dispatch => ({
@@ -90,9 +103,8 @@ const mapDispatchToProps = dispatch => ({
   createNote: note => dispatch(createNote(note)),
 
   // donations
-  getDonations: donations => dispatch(getDonations(donations)),
-  createDonation: donation => dispatch(createDonation(donation))
-
+  createDonation: (amount, institution) => dispatch(createDonation(amount, institution)),
+  getDonations: (amount, institution) => dispatch(getDonations(amount, institution)),
 });
 
 export default connect(
