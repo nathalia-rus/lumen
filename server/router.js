@@ -2,7 +2,7 @@ const router = require('express').Router();
 const lumenDataUserController = require('./controllers/controllers');
 
 router
-  .get('/userdata', lumenDataUserController.getLumenUserData);
+  .get('/userdata', lumenDataUserController.getUser);
 router.get('/*', () => {
   this.status = 404;
 });

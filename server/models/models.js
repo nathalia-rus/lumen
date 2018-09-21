@@ -1,29 +1,35 @@
-const db = require("../db");
-
+const db = require('../db');
 
 // GET ALL
 
-exports.getLumenUserData = () => {
+
+/* exports.getUser = () => {
   return new Promise((resolve, reject) => {
-    db.LumenUserData.find({}, function (err, lumenUserData) {
+    db.User.find({}, (err, User) => {
       if (err) reject(err);
-      resolve(lumenUserData)
+      resolve(User);
     });
   });
+}; */
+
+exports.getUser = () => {
+  console.log(db);
+  db.User.find().then(results => console.log(results));
+  return db.User.find();
 };
 
 // UPDATE / CREATE
 
 exports.updateLumenUserList = (id, req) => {
-  db.LumenUserData.update({ _id: id }, { $push: { list: req.body.data } })
+  db.User.update({ _id: id }, { $push: { list: req.body.data } });
 };
 
 exports.updateLumenUserNotes = (id, req) => {
-  db.LumenUserData.update({ _id: id }, { $push: { notes: req.body.data } });
+  db.User.update({ _id: id }, { $push: { notes: req.body.data } });
 };
 
 exports.updateLumenUserDonations = (id, req) => {
-  db.LumenUserData.update({ _id: id },
+  db.User.update({ _id: id },
     {
       $push: {
         donations: {
@@ -34,33 +40,24 @@ exports.updateLumenUserDonations = (id, req) => {
     });
 };
 
-// DELETE
-// not that, just temp lead
-// exports.deleteItem = id => {
-//   db.Topics.deleteOne({ _id: id }, function (err, res) {
-//     if (err) reject(err);
-//   });
-// };
-
-
 // SCORES
 
-exports.addGoodActionPoint = id => {
-  db.LumenUserData.where({ _id: id }).update({ $inc: { scores: { goodActions: 1 } } }, function (
+exports.addGoodActionPoint = (id) => {
+  db.User.where({ _id: id }).update({ $inc: { scores: { goodActions: 1 } } }, function (
     err,
     doc
   ) { });
 };
 
 exports.addSmilesPoint = id => {
-  db.LumenUserData.where({ _id: id }).update({ $inc: { scores: { smiles: 1 } } }, function (
+  db.User.where({ _id: id }).update({ $inc: { scores: { smiles: 1 } } }, function (
     err,
     doc
   ) { });
 };
 
 exports.addDonationsPoint = id => {
-  db.LumenUserData.where({ _id: id }).update({ $inc: { scores: { donations: 1 } } }, function (
+  db.User.where({ _id: id }).update({ $inc: { scores: { donations: 1 } } }, function (
     err,
     doc
   ) { });

@@ -1,8 +1,13 @@
 const model = require('../models/models');
 
-exports.getLumenUserData = (req, res) => {
-  model.getLumenUserData().then(data => res.status(200).send(data));
+/*  exports.insertInDb = (req, res) => {
+  model.insertInDb().then(data => res.status(200).send(data));
+}; */
+
+exports.getUser = (req, res) => {
+  model.getUser().then(data => res.status(200).send(data));
 };
+
 
 exports.updateLumenUserList = async (req, res) => {
   const err = await model.updateLumenUserList(req.body).catch(() => true);
