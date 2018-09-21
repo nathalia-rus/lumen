@@ -2,8 +2,7 @@ const db = require('../db_');
 
 // GET ALL DATA
 
-exports.getUser = () => {
-  console.log(db);
+exports.getUser = () => { 
   db.User.find().then(results => console.log(results));
   return db.User.find();
 };

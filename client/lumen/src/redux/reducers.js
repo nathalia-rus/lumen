@@ -7,6 +7,10 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case "GET_SCORES":
+    return {
+      ...action.scores
+    };
     case "CREATE_LIST_ITEM":
     return {
       ...state,
@@ -22,7 +26,9 @@ const reducer = (state = initialState, action) => {
      content: action.content
     };
     case "GET_NOTES":
-    return {...action.notes};
+    return {
+      ...action.notes
+    };
     case "CREATE_DONATION":
     return {
       ...state,
@@ -30,7 +36,9 @@ const reducer = (state = initialState, action) => {
         institution: action.institution
     };
     case "GET_DONATIONS":
-    return {...action.donations};
+    return {
+      ...action.donations
+    };
     default: 
     return state
   }

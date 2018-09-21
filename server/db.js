@@ -48,7 +48,7 @@ const userSchema = new mongoose.Schema({
  */
 
 const User = mongoose.model('User', userSchema);
-console.log(User);
+console.log(User.list);
 
 
 // const nath = new User(
@@ -61,5 +61,5 @@ console.log(User);
 // if you save it's ok it creates
 
 module.exports = {
-  db, userSchema, User
+  db, userSchema, User,
 };

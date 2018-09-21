@@ -14,15 +14,16 @@ import { connect } from "react-redux";
 
 class App extends Component {
 
-getUserData =() => {
-  return fetch('http://localhost:3010/userdata')
-  .then(res => res.json())
-    .then(data => {
-      this.props.getListItems(data.list);
-      this.props.getNotes(data.notes); // will be passed as arg (notes) in redux action
-      this.props.getDonations(data.donations);
-    })
-  }
+   getUserData = () => {
+    return fetch('http://localhost:3010/')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data[0]);
+        this.props.getListItems(data[0].list);
+        this.props.getNotes(data[0].notes); // will be passed as arg (notes) in redux action
+        this.props.getDonations(data[0].donations);
+      })
+  } 
 
 componentDidMount() {
   this.getUserData();
@@ -33,10 +34,10 @@ componentDidMount() {
    <Router > 
     <div> 
       <Header />
-      <Route exact path = "/" component = {Homepage}/> 
-      <Route exact path="/list" component={EditList} /> 
-      <Route exact path="/notes" component={EditNotes} /> 
-      <Route exact path="/donations" component={EditDonations} /> 
+      <Route exact path = "/" render = { () => ( <Homepage/>) } /> 
+      <Route exact path="/list" render={() => (<EditList/>)} /> 
+      <Route exact path="/notes" render={() => (<EditNotes />)} /> 
+      <Route exact path="/donations" render={() => (<EditDonations />)} /> 
     </div>
    </Router>  
     );

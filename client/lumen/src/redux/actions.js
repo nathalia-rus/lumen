@@ -1,4 +1,11 @@
 
+// scores
+
+const getScores = scores => ({
+  type: "GET_SCORES",
+  scores: scores
+});
+
 // list
 
 const createListItem = listItem => ({
@@ -36,4 +43,4 @@ const getDonations = donations => ({
   donations: donations
 })
 
-export { createListItem, getListItems, createNote, getNotes, createDonation, getDonations}
+export { getScores, createListItem, getListItems, createNote, getNotes, createDonation, getDonations}
