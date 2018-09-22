@@ -4,6 +4,7 @@ import MyNotes from '../notes/MyNotes';
 import MyScores from '../scores/MyScores';
 import MyDonations from '../donations/MyDonations';
 
+
 class Homepage extends Component {
 
 // pass props to components 
@@ -14,7 +15,8 @@ class Homepage extends Component {
             <MyScores 
             getId = {this.props.getId}
             scores = {this.props.scores}
-            addGoodActionPoint={this.props.addGoodActionPoint} />
+            addPoint1={this.props.addPoint1}
+            removePoint1={this.props.removePoint1} />
             <MyList list = {this.props.list} />
             <MyNotes notes ={ this.props.notes}/>
             <MyDonations 

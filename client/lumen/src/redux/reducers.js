@@ -1,7 +1,11 @@
 const initialState = {
   email: '',
   username: '',
-  scores: {},
+  scores: {
+    goodActions: 0,
+    smiles: 0,
+    amount: 0
+  },
   list:[],
   notes:[],
   donations: {
@@ -19,6 +23,22 @@ const reducer = (state = initialState, action) => {
         ...action.scores
       }
     };
+    case "ADD_POINT":
+      return {
+        ...state,
+        scores: {
+          ...state.scores,
+          [action.what]: state.scores[action.what]+=1
+        }
+      };
+    case "REMOVE_POINT":
+      return {
+        ...state,
+        scores: {
+          ...state.scores,
+          [action.what]: state.scores[action.what] -= 1
+        }
+      };
   //   case "GET_AMOUNT":
   //   return {
   //     ...state,

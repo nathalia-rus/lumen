@@ -31,8 +31,13 @@ exports.updateDonations = (id, req) => {
 
 // SCORES
 
-exports.addGoodActionPoint = (id) => {
-  db.User.where({ _id: id }).update({ $inc: { scores: { goodActions: 1 } } });
+// exports.addPoint = (id) => {
+//   db.User.where({ _id: id }).update({ $inc: { scores: { goodActions: 1 } } });
+// };
+
+
+exports.addPoint = (id, what) => {
+  db.User.where({ _id: id }).update({ $inc: { scores: { [what]: 1 } } });
 };
 
 exports.addSmilePoint = (id) => {

@@ -62,3 +62,12 @@ exports.addDonationPoint = async (req, res) => {
   model.addDonationPoint(id);
   return res.sendStatus(200);
 };
+
+exports.addPoint = async (req, res) => {
+  const { target } = req.query;
+  console.log(target);
+  const { id } = req.params;
+  console.log(id);
+  await model.addPoint(id, target);
+  return res.sendStatus(200);
+};

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import './MyNotes.css'
+import './MyNotes.css';
+import { Link } from 'react-router-dom';
 const add = require("../../../assets/add.png");
 const whiteLine = require("../../../assets/whiteLine.png");
 const spark = require('../../../assets/glittery.png')
+
 
 class MyNotes extends Component {
 
@@ -21,7 +23,7 @@ class MyNotes extends Component {
         <div className="subContainer">
           <h3 className="subTitle" id = "subTitleNotes">your notes</h3>
           <img alt = 'add' className="addTo" id= "MyNotesAdd" src={add} />
-          <img alt = 'line' className="whiteLine" src={whiteLine} />
+            <Link to="/notes" > <img alt = 'line' className="whiteLine" src={whiteLine} /> </Link>
         </div>
           <div className="ListHome">
             {this.renderNotes()}   

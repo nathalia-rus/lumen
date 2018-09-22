@@ -51,6 +51,15 @@ const getDonations = (amount, institution) => ({
   institution: institution
 })
 
+const addPoint = (what) => ({
+  type: "ADD_POINT",
+  what,
+})
+
+const removePoint = (what) => ({
+  type: "REMOVE_POINT",
+  what,
+})
 
  
-export { getScores, createListItem, getListItems, createNote, getNotes, createDonation, getDonations  }
+export { removePoint, addPoint, getScores, createListItem, getListItems, createNote, getNotes, createDonation, getDonations  }

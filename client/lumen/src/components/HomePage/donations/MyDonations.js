@@ -3,8 +3,6 @@ import './MyDonations.css';
 const zip = require('lodash.zip');
 const add = require("../../../assets/add.png");
 const whiteLine = require("../../../assets/whiteLine.png");
-/* const hand =require("../assets/hand.svg"); */
-
 
 class MyDonations extends Component {
 
@@ -15,15 +13,6 @@ class MyDonations extends Component {
     }
   }
 
-  // getAmount_ = () => {
-  //   return fetch('http://localhost:3010/')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       return data[0].donations.amount
-  //     })
-  // };
-
-
   componentDidMount() {
     fetch('http://localhost:3010/')
       .then(res => res.json())
@@ -31,14 +20,6 @@ class MyDonations extends Component {
         this.setState({ amount: data[0].donations.amount.reduce((total, amount) => total + amount)})
       })
   }
-
-
-
-  //  renderTotal = async () => {
-  //    let toSum = await this.props.getAmount();
-  //    console.log(toSum.reduce((total, amount) => total + amount))
-  //    return toSum.reduce((total, amount) => total + amount )
-  // };
  
 renderDonations() {
   let toMap = zip(Object.entries(this.props.donations)[0][1], Object.entries(this.props.donations)[1][1]);

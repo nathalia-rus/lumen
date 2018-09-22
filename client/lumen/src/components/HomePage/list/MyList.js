@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import './MyList.css'
+import './MyList.css';
+import { Link } from 'react-router-dom';
 const add = require("../../../assets/add.png");
-const whiteLine = require("../../../assets/whiteLine.png")
+const whiteLine = require("../../../assets/whiteLine.png");
+
 
 class MyList extends Component {
 
@@ -20,7 +22,7 @@ class MyList extends Component {
       <div>
         <div className="subContainer">
           <h3 className="subTitle">your list</h3>
-          <img alt = 'add' className="addTo" src={add} />
+          <Link to="/list" > <img alt='add' src={add} className="addTo" /> </Link>
           <img alt='line' className="whiteLine" src={whiteLine} />
         </div>
         <div className="ListHome">

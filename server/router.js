@@ -6,8 +6,12 @@ router
 router.get('/*', () => {
   this.status = 404;
 });
-router.put('/addGoodActionPoint/:id', lumenDataUserController.addGoodActionPoint);
-router.put('/addSmilePoint', lumenDataUserController.addSmilePoint);
+
+
+router.put('/addPoint/:id', lumenDataUserController.addPoint);
+// router.put('/:id/:what/up', lumenDataUserController.addPoint);
+// router.put('/:id/:what/down', lumenDataUserController.substractPoint);
+router.put('/addSmilePoint');
 router.put('/addDonationPoint', lumenDataUserController.addDonationPoint);
 
 module.exports = router;

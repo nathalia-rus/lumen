@@ -8,7 +8,7 @@ import EditList from '../components/Edits/editlist/EditList'
 import EditNotes from '../components/Edits/editnotes/EditNotes';
 import EditDonations from '../components/Edits/editdonations/EditDonations';
 
-import {  getScores, createListItem, getListItems, createNote, getNotes, createDonation, getDonations } from '../redux/actions';
+import { removePoint, addPoint, getScores, createListItem, getListItems, createNote, getNotes, createDonation, getDonations } from '../redux/actions';
 
 import { connect } from "react-redux"; 
 
@@ -49,8 +49,6 @@ class App extends Component {
       })
   }
 
-//  return { data[0].donations[0].amount ; data[0].donations[0].institution}
-
   getDonations_ = () => {
     return fetch('http://localhost:3010/')
     .then(res => res.json())
@@ -65,23 +63,38 @@ getAmount = () => {
   return fetch('http://localhost:3010/')
     .then(res => res.json())
     .then(data => {
-    //  return this.props.getAmount(data[0].donations.amount);
       return data[0].donations.amount })
 };
 
-addGoodActionPoint = (id) => {
-  return fetch('http://localhost:3010/addGoodActionPoint/' +id, {
-    method: "PUT"
-  }).then(() => this.getScores_());
-}
+
+  addPoint1 = (what, id) => {
+    console.log('here')
+    // return this.props.addPoint(what)
+    fetch(`http://localhost:3010/addPoint/${id}?target=${what}`, {
+        method: "PUT"
+      })
+      .then(console.log)
+      .then(() => this.props.addPoint(what))
+  }
+
+
+  // removePoint1 = async (what, id) => {
+  //   // this.props.removePoint(what);
+  //    return fetch("http://localhost:3010/addPoint", + '/' + id + "?target=" + what,
+  //     {
+  //       method: "PUT"
+  //     })
+  //     .then(() => this.props.addpoint(what)) 
+  // }
+
 
 componentDidMount() {
   this.getScores_();
   this.getList_();
   this.getNotes_();
   this.getDonations_();
- // this.getId();
- this.getAmount();
+  this.getId();
+  this.getAmount();
 }
 
   render() {
@@ -91,6 +104,8 @@ componentDidMount() {
       <Header />
       <Route exact path = "/" render = {  ( props ) => ( 
       <Homepage 
+      removePoint1 = {this.removePoint1}
+        addPoint1 = {this.addPoint1}
         getId = {this.getId}
         scores={this.props.scores}
         getAmount = {this.getAmount}
@@ -113,7 +128,7 @@ componentDidMount() {
   scores: state.scores,
   list: state.list,
   notes: state.notes,
-   donations: state.donations,
+  donations: state.donations,
  //  amount: state.amount
  }); 
 
@@ -122,6 +137,8 @@ const mapDispatchToProps = dispatch => ({
   // scores
   getScores: scores => dispatch(getScores(scores)),
   // to add : inc and dec
+  addPoint: (what) => dispatch(addPoint(what)),
+  removePoint: (what) => dispatch(removePoint(what)),
 
   // list
   getListItems: list => dispatch(getListItems(list)),
