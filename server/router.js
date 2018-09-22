@@ -9,8 +9,8 @@ router.get('/*', () => {
 
 router.put('/addPoint/:id', lumenDataUserController.addPoint);
 router.put('/removePoint/:id', lumenDataUserController.removePoint);
+router.put('/addNote/:id', lumenDataUserController.addNote);
 router.put('/addListItem/:id', lumenDataUserController.addListItem);
-
 
 module.exports = router;
 

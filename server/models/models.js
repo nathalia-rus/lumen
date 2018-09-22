@@ -43,3 +43,8 @@ exports.addListItem = (id, listItem) => {
   console.log(listItem);
   db.User.where({ _id: id }).update({ $push: { list: listItem } });
 };
+
+exports.addNote = (id, note) => {
+  console.log(note);
+  db.User.where({ _id: id }).update({ $push: { notes: note } });
+};
