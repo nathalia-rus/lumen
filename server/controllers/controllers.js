@@ -45,23 +45,6 @@ exports.deleteDonation = async (req, res) => {
   return res.sendStatus(200);
 };
 
-exports.addGoodActionPoint = async (req, res) => {
-  let id = req.params.id;
-  model.addGoodActionPoint(id);
-  return res.sendStatus(200);
-};
-
-exports.addSmilePoint = async (req, res) => {
-  let id = req.params.id;
-  model.addSmilePoint(id);
-  return res.sendStatus(200);
-};
-
-exports.addDonationPoint = async (req, res) => {
-  let id = req.params.id;
-  model.addDonationPoint(id);
-  return res.sendStatus(200);
-};
 
 exports.addPoint = async (req, res) => {
   const { target } = req.query;
@@ -69,5 +52,14 @@ exports.addPoint = async (req, res) => {
   const { id } = req.params;
   console.log(id);
   await model.addPoint(id, target);
+  return res.sendStatus(200);
+};
+
+exports.removePoint = async (req, res) => {
+  const { target } = req.query;
+  console.log(target);
+  const { id } = req.params;
+  console.log(id);
+  await model.removePoint(id, target);
   return res.sendStatus(200);
 };

@@ -53,10 +53,8 @@ class MyScores extends Component {
               <p className="desc" > good actions</p>
             </div>
             <div className="scorecontainer">
-              {/* <img alt='subs' className="substract" src={substract} onClick={(() => this.props.removePoint1('smiles', this.state.id))} /> */}
-              {/* <h1 className="score"> {this.state.smiles} </h1> */}
+               <img alt='subs' className="substract" src={substract} onClick = {( ()=> this.props.removePoint1('smiles', this.state.id))} /> 
               <h1 className="score"> {this.props.scores && this.props.scores.smiles} </h1> 
-              {/* <img alt='smile' className="add" src={add} onClick={(() => this.addPoint_(this.props.scores.smiles))} /> */}
               <img alt='smile' className="add" src={add} onClick={(() => this.props.addPoint1('smiles', this.state.id))} />
               <p className="desc" > smiles</p>
             </div>
@@ -73,32 +71,3 @@ class MyScores extends Component {
 }
 
 export default MyScores;
-
-// here in case of need
-
-/*     componentWillMount() {
-    }
-
-    componentWillReceiveProps(nextProps) {
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-    }
-
-    componentWillUpdate(nextProps, nextState) {
-    } */
-
-
-    // after render:
-
-/* componentDidMount() {
-}
-
-componentDidUpdate(prevProps, prevState) {
-}
-
-componentWillUnmount() {
-}
-
-componentDidCatch(error, info) {
-} */

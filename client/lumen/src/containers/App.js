@@ -68,8 +68,6 @@ getAmount = () => {
 
 
   addPoint1 = (what, id) => {
-    console.log('here')
-    // return this.props.addPoint(what)
     fetch(`http://localhost:3010/addPoint/${id}?target=${what}`, {
         method: "PUT"
       })
@@ -77,15 +75,16 @@ getAmount = () => {
       .then(() => this.props.addPoint(what))
   }
 
+  removePoint1 = (what, id) => {
+    console.log('here')
+    fetch(`http://localhost:3010/removePoint/${id}?target=${what}`, {
+      method: "PUT"
+    })
+      .then(console.log)
+      .then(() => this.props.removePoint(what))
+  }
 
-  // removePoint1 = async (what, id) => {
-  //   // this.props.removePoint(what);
-  //    return fetch("http://localhost:3010/addPoint", + '/' + id + "?target=" + what,
-  //     {
-  //       method: "PUT"
-  //     })
-  //     .then(() => this.props.addpoint(what)) 
-  // }
+
 
 
 componentDidMount() {

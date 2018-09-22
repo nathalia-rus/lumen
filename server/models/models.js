@@ -31,32 +31,10 @@ exports.updateDonations = (id, req) => {
 
 // SCORES
 
-// exports.addPoint = (id) => {
-//   db.User.where({ _id: id }).update({ $inc: { scores: { goodActions: 1 } } });
-// };
-
-
 exports.addPoint = (id, what) => {
   db.User.where({ _id: id }).update({ $inc: { scores: { [what]: 1 } } });
 };
 
-exports.addSmilePoint = (id) => {
-  db.User.where({ _id: id }).update({ $inc: { scores: { smiles: 1 } } });
+exports.removePoint = (id, what) => {
+  db.User.where({ _id: id }).update({ $inc: { scores: { [what]: -1 } } });
 };
-
-exports.addDonationPoint = (id) => {
-  db.User.where({ _id: id }).update({ $inc: { scores: { donations: 1 } } });
-};
-
-// or
-
-/* exports.addGoodActionPoint = (id) => {
-  db.User.findById(id, function (err, topic) {
-    if (err) return console.log(err);
-
-    User.score.goodActions ++;
-    User.save(function (err, updatedScore) {
-      if (err) return console.log(err);
-    });
-  });
-} */

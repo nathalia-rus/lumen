@@ -22,8 +22,8 @@ class MyNotes extends Component {
       <div>
         <div className="subContainer">
           <h3 className="subTitle" id = "subTitleNotes">your notes</h3>
-          <img alt = 'add' className="addTo" id= "MyNotesAdd" src={add} />
-            <Link to="/notes" > <img alt = 'line' className="whiteLine" src={whiteLine} /> </Link>
+            <Link to="/notes" >  <img alt='add' className="addTo" id="MyNotesAdd" src={add} />  </Link>
+             <img alt = 'line' className="whiteLine" src={whiteLine} />
         </div>
           <div className="ListHome">
             {this.renderNotes()}   

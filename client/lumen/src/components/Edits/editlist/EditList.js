@@ -14,30 +14,19 @@ class EditList extends Component {
     static defaultProps = {
     }
 
-    componentWillMount() {
-    }
-
-    componentWillReceiveProps(nextProps) {
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-    }
-
-    componentWillUpdate(nextProps, nextState) {
-    }
 
   render() {
     return (
       <div>
         <div className="content">  
-          <div className="listContainer">
+          <div className="notesContainer">
           <h3 className="subTitle"> kind ideas</h3>
-            <img className="longLine" src={longLine} />
+            {/* <img className="longLine" src={longLine} /> */}
         </div>
           <br />
         <div className = "form"> 
           <input placeholder=" " type="text" name="addItem"/>
-          <button type="submit" className="addItem" > <img className = "addButton" src={add} /> </button>
+          <button type="submit" className="addItem" > <img alt = 'button' className = "addButton" src={add} /> </button>
           <p> add </p>
           </div>
         <br/>

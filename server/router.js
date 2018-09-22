@@ -7,12 +7,9 @@ router.get('/*', () => {
   this.status = 404;
 });
 
-
 router.put('/addPoint/:id', lumenDataUserController.addPoint);
-// router.put('/:id/:what/up', lumenDataUserController.addPoint);
-// router.put('/:id/:what/down', lumenDataUserController.substractPoint);
-router.put('/addSmilePoint');
-router.put('/addDonationPoint', lumenDataUserController.addDonationPoint);
+router.put('/removePoint/:id', lumenDataUserController.removePoint);
+
 
 module.exports = router;
 

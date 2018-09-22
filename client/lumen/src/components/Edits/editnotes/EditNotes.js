@@ -16,19 +16,6 @@ class EditNotes extends Component {
     static defaultProps = {
     }
 
-    componentWillMount() {
-    }
-
-    componentWillReceiveProps(nextProps) {
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-    }
-
-    componentWillUpdate(nextProps, nextState) {
-    }
-
-
   render() {
     return (
       <div>

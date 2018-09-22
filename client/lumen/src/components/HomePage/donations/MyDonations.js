@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './MyDonations.css';
+import { Link } from 'react-router-dom';
 const zip = require('lodash.zip');
 const add = require("../../../assets/add.png");
 const whiteLine = require("../../../assets/whiteLine.png");
@@ -33,7 +34,7 @@ renderDonations() {
       <div>
         <div className="subContainer">
           <h3 className="subTitle" id = "donationsText">your donations</h3>
-          <img className="addTo" src={add} />
+          <Link to="/donations" >   <img className="addTo" src={add} /> </Link>
           <img className="whiteLine" id= "donationsLine" src={whiteLine} />
         </div>
         <div className="donationsList">
