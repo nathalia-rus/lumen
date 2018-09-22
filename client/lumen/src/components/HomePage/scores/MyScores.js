@@ -32,15 +32,9 @@ class MyScores extends Component {
       }
     
 
- // onClick={() => this.props.addGoodActionPoint(this.props.getId())
-
     render() {
-      console.log(this.state.id);
-      console.log(this.props.scores.smiles)
-      console.log(parseInt(this.state.smiles, 2));
+      
       let parsedAmount = parseInt(this.state.amount, 10);
-      let parsedGoodActions = parseInt(this.state.goodActions, 10);
-      let parsedSmiles = parseInt(this.state.smiles, 10);
 
         return (
           

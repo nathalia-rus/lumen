@@ -38,3 +38,8 @@ exports.addPoint = (id, what) => {
 exports.removePoint = (id, what) => {
   db.User.where({ _id: id }).update({ $inc: { scores: { [what]: -1 } } });
 };
+
+exports.addListItem = (id, listItem) => {
+  console.log(listItem);
+  db.User.where({ _id: id }).update({ $push: { list: listItem } });
+};

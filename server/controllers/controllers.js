@@ -63,3 +63,15 @@ exports.removePoint = async (req, res) => {
   await model.removePoint(id, target);
   return res.sendStatus(200);
 };
+
+exports.addListItem = async (req, res) => {
+  const { target } = req.query;
+  console.log(target);
+  const { id } = req.params;
+  console.log(id);
+  await model.addListItem(id, target);
+  return res.sendStatus(200);
+};
+
+// the target = input written on the form
+// put as listItem in the model fn arg
