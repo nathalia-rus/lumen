@@ -13,8 +13,16 @@ class EditNotes extends Component {
         };
     };
 
-    static defaultProps = {
-    }
+
+  renderNotes() {
+    return (this.props.notes.map(note => {
+      return (
+        <div> <img className= "handLeft" src={hand} /> <p> {note} </p> </div>
+      )
+    })
+    )
+  };
+
 
   render() {
     return (
@@ -34,15 +42,7 @@ class EditNotes extends Component {
           <br />
           <br />
           <div className="listNotes">
-            <img className= "handLeft" src={hand} />
-            <p>It felt super rewarding. I felt better that day.  </p>
-            <img className="HandRight"  src={hand} />
-            <p>  We had both smiled at each other, and my day felt brighter.  </p>
-            <img className="handLeft" src={hand} />
-            <p>  We had both smiled at each other, and my day felt brighter.  </p>
-            <img className="HandRight" src={hand} />
-            <p>  We had both smiled at each other, and my day felt brighter.  </p>
-          
+            {this.renderNotes()} 
           </div>
         </div>
       </div>

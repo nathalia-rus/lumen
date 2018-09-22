@@ -114,9 +114,19 @@ componentDidMount() {
         donations={this.props.donations}
       />) 
       } /> 
-      <Route exact path="/list" render={() => (<EditList/>)} /> 
-      <Route exact path="/notes" render={() => (<EditNotes />)} /> 
-      <Route exact path="/donations" render={() => (<EditDonations />)} /> 
+      <Route exact path="/list" render={(props) => 
+      ( <EditList
+      list = {this.props.list}
+      />
+      )} /> 
+      <Route exact path="/notes" render={ ( props ) => 
+        ( <EditNotes 
+          notes = {this.props.notes}
+        />)} /> 
+      <Route exact path="/donations" render={ ( props ) => 
+        ( <EditDonations
+        donations = {this.props.donations}
+         />)} /> 
     </div>
    </Router>  
     );

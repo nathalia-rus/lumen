@@ -30,7 +30,8 @@
 
 .ListHome p {
   margin-top: -3%;
-  margin-left: 6%;
+  padding-left: 9%;
+  padding-right: 9%;
   font-family: avenir next;
   font-weight: 100;
   font-size: 15px;

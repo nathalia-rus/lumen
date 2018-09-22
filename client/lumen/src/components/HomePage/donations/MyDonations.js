@@ -10,7 +10,7 @@ class MyDonations extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      amount: '0'
+      amount: 0
     }
   }
 
@@ -34,8 +34,8 @@ renderDonations() {
       <div>
         <div className="subContainer">
           <h3 className="subTitle" id = "donationsText">your donations</h3>
-          <Link to="/donations" >   <img className="addTo" src={add} /> </Link>
-          <img className="whiteLine" id= "donationsLine" src={whiteLine} />
+          <Link to="/donations" >   <img alt='donations' className="addTo" src={add} /> </Link>
+          <img alt = 'donations' className="whiteLine" id= "donationsLine" src={whiteLine} />
         </div>
         <div className="donationsList">
            {this.renderDonations()} 

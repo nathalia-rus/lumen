@@ -15,6 +15,17 @@ class EditList extends Component {
     }
 
 
+  renderList() {
+    return (this.props.list.map(listItem => {
+      return (
+        <p> 💡 {listItem} </p>
+      )
+    })
+    )
+  };
+
+
+
   render() {
     return (
       <div>
@@ -33,12 +44,7 @@ class EditList extends Component {
         <br/>
         <br/>
         <div className="listItems">
-          <p> 💡 share my umbrella on a rainy day </p>
-          <p> 💡 anonymously send flowers to someone </p>
-          <p> 💡 randomly buy an ice cream to a child </p>
-            <p> 💡 share my umbrella on a rainy day </p>
-            <p> 💡 anonymously send flowers to someone </p>
-            <p> 💡 randomly buy an ice cream to a child </p>
+          {this.renderList()}
         </div>
 {/*           <img className="midLine" src={longLine} /> */}
           <br />

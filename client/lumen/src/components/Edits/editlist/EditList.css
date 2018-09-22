@@ -94,6 +94,8 @@ input {
 .listNotes {
   margin-top: -7%;
   margin-left: 6%;
+  padding-left: 3%;
+  padding-right: 5%;
   font-family: avenir next;
   font-weight: 100;
   font-size: 95%;

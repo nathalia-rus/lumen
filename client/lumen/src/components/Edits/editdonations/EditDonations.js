@@ -1,30 +1,36 @@
 import React, { Component } from 'react';
 import '../../HomePage/list/MyList.css';
-import './EditDonations.css'
-const longLine = require("../../../assets/longLine.png")
+import './EditDonations.css';
+const zip = require('lodash.zip');
+const longLine = require("../../../assets/longLine.png");
+const add = require("../../../assets/add.png");
 
 
 class EditDonations extends Component {
     constructor(props) {
         super(props);
         this.state = {
+          amout: 0
         };
     };
 
-    static defaultProps = {
-    }
 
-    componentWillMount() {
-    }
 
-    componentWillReceiveProps(nextProps) {
-    }
+  componentDidMount() {
+    fetch('http://localhost:3010/')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ amount: data[0].donations.amount.reduce((total, amount) => total + amount) })
+      })
+  }
 
-    shouldComponentUpdate(nextProps, nextState) {
-    }
-
-    componentWillUpdate(nextProps, nextState) {
-    }
+  renderDonations() {
+    let toMap = zip(Object.entries(this.props.donations)[0][1], Object.entries(this.props.donations)[1][1]);
+    return toMap.map(item => {
+      return (<p> 🌱 $<i> {item.join('   -   ')}  </i> </p >)
+    })
+  };
+  
 
   render() {
     return (
@@ -38,7 +44,7 @@ class EditDonations extends Component {
 
           <div className="drop">
             <select name="amount">
-              <option value="select"> select the amount</option>
+              <option value="select"> - select the amount - </option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -48,16 +54,20 @@ class EditDonations extends Component {
               <option value="7">7</option>
               <option value="8">8</option>
             </select>
-            <p className = "addDonationP"> add </p>
+            <div id="formDonations">
+              <input placeholder="cause donated for" type="text" name="addItem" />
+              <button type="submit" className="addItem" > <img alt='button' className="addButton" src={add} /> </button>
+              <p className="addDonationP"> add </p>
             </div>
+
+            </div>
+
           <img className="longLine" src={longLine} />
           <br />
           <br />
           <br />
           <div className="donationsList">
-            <p> 🌱 $ 9 <i> Amnesty International</i> </p>
-            <p> 🌱 $ 2 <i> Medecins Sans Frontieres </i> </p>
-            <p> 🌱 $ 5 <i> WWF </i> </p>
+            {this.renderDonations()}
             <img className="longLine" src={longLine} />
             <br/>
             <br />
