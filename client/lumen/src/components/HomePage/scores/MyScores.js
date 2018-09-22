@@ -18,7 +18,7 @@ class MyScores extends Component {
             <div className = "scorecontainer"> 
             <img className="substract" src={substract} />
               <h1 className="score"> {this.props.scores.goodActions} </h1>
-            <img className="add" src={add} />
+              <img className="add" src={add} onClick={() => this.props.addGoodActionPoint(this.props.getId())}  />
               <p className="desc" > good actions</p>
             </div>
             <div className="scorecontainer">

@@ -6,6 +6,13 @@ const getScores = scores => ({
   scores
 });
 
+// amount
+
+// const getAmount = amount => ({
+//   type: "GET_AMOUNT",
+//   amount
+// });
+
 // list
 
  const createListItem = listItem => ({

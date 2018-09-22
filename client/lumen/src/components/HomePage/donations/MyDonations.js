@@ -8,6 +8,38 @@ const whiteLine = require("../../../assets/whiteLine.png");
 
 class MyDonations extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      amount: '0'
+    }
+  }
+
+  // getAmount_ = () => {
+  //   return fetch('http://localhost:3010/')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       return data[0].donations.amount
+  //     })
+  // };
+
+
+  componentDidMount() {
+    fetch('http://localhost:3010/')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ amount: data[0].donations.amount.reduce((total, amount) => total + amount)})
+      })
+  }
+
+
+
+  //  renderTotal = async () => {
+  //    let toSum = await this.props.getAmount();
+  //    console.log(toSum.reduce((total, amount) => total + amount))
+  //    return toSum.reduce((total, amount) => total + amount )
+  // };
+ 
 renderDonations() {
   let toMap = zip(Object.entries(this.props.donations)[0][1], Object.entries(this.props.donations)[1][1]);
   return toMap.map( item => {
@@ -16,7 +48,6 @@ renderDonations() {
 };
 
   render() {
-
     return (
       <div>
         <div className="subContainer">
@@ -25,31 +56,13 @@ renderDonations() {
           <img className="whiteLine" id= "donationsLine" src={whiteLine} />
         </div>
         <div className="donationsList">
-           {this.renderDonations()}
-          <p> 🌱 $ 5 <i> WWF </i> </p>
-          <p id = "totalDonations"> 🕊 $ 16 total </p> 
+           {this.renderDonations()} 
+          <p id="totalDonations"> 🕊 $ {this.state.amount} total </p>
         </div>
       </div>
     );
   }
-
 }
 
 export default MyDonations;
 
-
-  // renderAmount() {
-  //   return (this.props.donations.amount.map( (given) => {
-  //     return (
-  //       <span>  ${given} </span>
-  //     )
-  //   }))
-  // }; 
-
-  // renderInstitution() {
-  //   return (this.props.donations.institution.map((toWhat) => {
-  //     return (
-  //       <span>  {toWhat}  </span>
-  //     )
-  //   }))
-  // };

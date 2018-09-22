@@ -1,4 +1,6 @@
 const initialState = {
+  email: '',
+  username: '',
   scores: {},
   list:[],
   notes:[],
@@ -17,13 +19,15 @@ const reducer = (state = initialState, action) => {
         ...action.scores
       }
     };
-/*     case "CREATE_LIST_ITEM":
-      return {
-        ...state,
-        list: {
-          ...action.listItem
-        }
-      }; */
+  //   case "GET_AMOUNT":
+  //   return {
+  //     ...state,
+  //     donations: {
+  //       amount: [
+  //         ...action.amount
+  //       ]
+  //     }
+  // }
     case "GET_LIST_ITEMS":
     return {
       ...state,
@@ -31,11 +35,6 @@ const reducer = (state = initialState, action) => {
         ...action.list
       ] 
     }
-/*     case "CREATE_NOTE":
-    return {
-    ...state, 
-     content: action.content
-    }; */
     case "GET_NOTES":
     return {
       ...state,
@@ -44,12 +43,6 @@ const reducer = (state = initialState, action) => {
       ]
  
     };
-/*     case "CREATE_DONATION":
-    return {
-      ...state,
-        amount: action.amount,
-        institution: action.institution
-    }; */
     case "GET_DONATIONS":
     return {
       ...state,
@@ -68,3 +61,11 @@ const reducer = (state = initialState, action) => {
 };
 
 export default reducer;
+
+
+/*     case "CREATE_DONATION":
+    return {
+      ...state,
+        amount: action.amount,
+        institution: action.institution
+    }; */

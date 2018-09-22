@@ -32,22 +32,26 @@ exports.updateDonations = (id, req) => {
 // SCORES
 
 exports.addGoodActionPoint = (id) => {
-  db.User.where({ _id: id }).update({ $inc: { scores: { goodActions: 1 } } }, function (
-    err,
-    doc
-  ) { });
+  db.User.where({ _id: id }).update({ $inc: { scores: { goodActions: 1 } } });
 };
 
-exports.addSmilesPoint = id => {
-  db.User.where({ _id: id }).update({ $inc: { scores: { smiles: 1 } } }, function (
-    err,
-    doc
-  ) { });
+exports.addSmilePoint = (id) => {
+  db.User.where({ _id: id }).update({ $inc: { scores: { smiles: 1 } } });
 };
 
-exports.addDonationsPoint = id => {
-  db.User.where({ _id: id }).update({ $inc: { scores: { donations: 1 } } }, function (
-    err,
-    doc
-  ) { });
+exports.addDonationPoint = (id) => {
+  db.User.where({ _id: id }).update({ $inc: { scores: { donations: 1 } } });
 };
+
+// or
+
+/* exports.addGoodActionPoint = (id) => {
+  db.User.findById(id, function (err, topic) {
+    if (err) return console.log(err);
+
+    User.score.goodActions ++;
+    User.save(function (err, updatedScore) {
+      if (err) return console.log(err);
+    });
+  });
+} */

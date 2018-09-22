@@ -11,10 +11,15 @@ class Homepage extends Component {
     render() {
         return (
           <div className="content"> 
-            <MyScores scores = {this.props.scores} />
+            <MyScores 
+            getId = {this.props.getId}
+            scores = {this.props.scores}
+            addGoodActionPoint={this.props.addGoodActionPoint} />
             <MyList list = {this.props.list} />
             <MyNotes notes ={ this.props.notes}/>
-            <MyDonations donations = {this.props.donations} />   
+            <MyDonations 
+            donations = {this.props.donations}
+            getAmount={this.props.getAmount} />   
             </div>
         );
     }

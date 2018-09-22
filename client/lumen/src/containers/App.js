@@ -8,7 +8,7 @@ import EditList from '../components/Edits/editlist/EditList'
 import EditNotes from '../components/Edits/editnotes/EditNotes';
 import EditDonations from '../components/Edits/editdonations/EditDonations';
 
-import { getScores, createListItem, getListItems, createNote, getNotes, createDonation, getDonations } from '../redux/actions';
+import {  getScores, createListItem, getListItems, createNote, getNotes, createDonation, getDonations } from '../redux/actions';
 
 import { connect } from "react-redux"; 
 
@@ -19,6 +19,15 @@ class App extends Component {
       .then(res => res.json())
       .then(data => {
        return this.props.getScores(data[0].scores);
+      })
+  } 
+
+  getId = () => {
+    return fetch('http://localhost:3010/')
+      .then(res => res.json())
+      .then(data => {
+        console.log((data[0]._id));
+        return data[0]._id;
       })
   } 
 
@@ -38,7 +47,7 @@ class App extends Component {
         console.log(this.props.getNotes(data[0].notes));
         return this.props.getNotes(data[0].notes);
       })
-  } 
+  }
 
 //  return { data[0].donations[0].amount ; data[0].donations[0].institution}
 
@@ -46,17 +55,33 @@ class App extends Component {
     return fetch('http://localhost:3010/')
     .then(res => res.json())
     .then(data => {
-      return this.props.getDonations(data[0].donations[0].amount, data[0].donations[0].institution)
+     return this.props.getDonations(data[0].donations.amount, data[0].donations.institution)
+  //  return data[0].donations.amount
     } 
   )
 }
 
+getAmount = () => {
+  return fetch('http://localhost:3010/')
+    .then(res => res.json())
+    .then(data => {
+    //  return this.props.getAmount(data[0].donations.amount);
+      return data[0].donations.amount })
+};
+
+addGoodActionPoint = (id) => {
+  return fetch('http://localhost:3010/addGoodActionPoint/' +id, {
+    method: "PUT"
+  }).then(() => this.getScores_());
+}
 
 componentDidMount() {
   this.getScores_();
   this.getList_();
   this.getNotes_();
   this.getDonations_();
+ // this.getId();
+ this.getAmount();
 }
 
   render() {
@@ -66,7 +91,10 @@ componentDidMount() {
       <Header />
       <Route exact path = "/" render = {  ( props ) => ( 
       <Homepage 
+        getId = {this.getId}
         scores={this.props.scores}
+        getAmount = {this.getAmount}
+        addGoodActionPoint={this.addGoodActionPoint}
         list={this.props.list}
         notes = {this.props.notes}
         donations={this.props.donations}
@@ -86,6 +114,7 @@ componentDidMount() {
   list: state.list,
   notes: state.notes,
    donations: state.donations,
+ //  amount: state.amount
  }); 
 
 const mapDispatchToProps = dispatch => ({
@@ -105,6 +134,7 @@ const mapDispatchToProps = dispatch => ({
   // donations
   createDonation: (amount, institution) => dispatch(createDonation(amount, institution)),
   getDonations: (amount, institution) => dispatch(getDonations(amount, institution)),
+  // getAmount: (amount) => dispatch(getAmount(amount)),
 });
 
 export default connect(
