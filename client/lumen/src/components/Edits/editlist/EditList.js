@@ -18,7 +18,7 @@ class EditList extends Component {
   renderList() {
     return (this.props.list.map(listItem => {
       return (
-        <p> 💡 {listItem} </p>
+        <p> 💡 {listItem.text} </p>
       )
     })
     )

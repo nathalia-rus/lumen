@@ -1,55 +1,11 @@
-
 // scores
+
+let nextListItem = 0;
 
 const getScores = scores => ({
   type: "GET_SCORES",
   scores
 });
-
-// amount
-
-// const getAmount = amount => ({
-//   type: "GET_AMOUNT",
-//   amount
-// });
-
-// list
-
- const createListItem = listItem => ({
-  type: "CREATE_LIST_ITEM",
-  list: listItem
-});
- 
-const getListItems = list => ({
-  type: "GET_LIST_ITEMS",
-  list: list
-});
-
-// notes
-
- const createNote = note => ({
-  type: "CREATE_NOTE",
-  note: note
-}); 
-
-const getNotes = notes => ({ 
-  type: "GET_NOTES",
-  notes: notes
-})
-
-// donations
-
-const createDonation = (amount, institution) => ({
-  type: "CREATE_DONATION",
-  amount: amount,
-  institution: institution
-});
-
-const getDonations = (amount, institution) => ({
-  type: "GET_DONATIONS",
-  amount: amount,
-  institution: institution
-})
 
 const addPoint = (what) => ({
   type: "ADD_POINT",
@@ -61,5 +17,43 @@ const removePoint = (what) => ({
   what,
 })
 
- 
-export { removePoint, addPoint, getScores, createListItem, getListItems, createNote, getNotes, createDonation, getDonations  }
+// list
+
+const getListItems = (id, text, completed) => ({
+  type: "GET_LIST_ITEMS",
+  id,
+  text,
+  completed
+});
+
+
+ const createListItem = (listItem) => ({
+  type: "CREATE_LIST_ITEM",
+  id: nextListItem++,
+  listItem
+});
+
+// notes
+
+const getNotes = notes => ({ 
+  type: "GET_NOTES",
+  notes: notes
+})
+
+const addNote = (note) => ({
+  type: "ADD_NOTE",
+  note,
+})
+
+// donations
+
+const getDonations = (amount, institution) => ({
+  type: "GET_DONATIONS",
+  amount: amount,
+  institution: institution
+})
+
+
+
+
+export { addNote, removePoint, addPoint, getScores, createListItem, getListItems, getNotes, getDonations  }

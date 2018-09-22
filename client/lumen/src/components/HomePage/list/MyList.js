@@ -4,20 +4,21 @@ import { Link } from 'react-router-dom';
 const add = require("../../../assets/add.png");
 const whiteLine = require("../../../assets/whiteLine.png");
 
-
 class MyList extends Component {
 
-
- renderList() {
-    return (this.props.list.map(item => {
+  renderList() {
+    let items = this.props.list;
+    console.log('HELLO', this.props.list[0]);
+    return (items.map(item => {
       return (
-               <p> 💡 {item} </p>
+        <p> 💡 {item.text} </p>
       )
     })
-  )};
-
+    )
+  };
 
    render() {
+
     return (
       <div>
         <div className="subContainer">
@@ -28,6 +29,7 @@ class MyList extends Component {
         <div className="ListHome">
 
           {this.renderList()}
+
 {/*           <p> 💡 {this.props.list[0]} </p> 
           <p> 💡 anonymously send flowers to someone </p>
           <p> 💡 randomly buy an ice cream to a child </p> */}
@@ -38,5 +40,7 @@ class MyList extends Component {
   }
 
 }
+
+
 
 export default MyList;

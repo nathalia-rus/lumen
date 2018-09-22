@@ -7,9 +7,16 @@ import MyDonations from '../donations/MyDonations';
 
 class Homepage extends Component {
 
-// pass props to components 
+// pass props to components
+
+  componentDidMount() {
+this.props.list;
+    console.log('HOMEPAGE', this.props.list);
+  }
+
 
     render() {
+ 
         return (
           <div className="content"> 
             <MyScores 

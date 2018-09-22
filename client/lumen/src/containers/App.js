@@ -21,7 +21,6 @@ class App extends Component {
        return this.props.getScores(data[0].scores);
       })
   } 
-
   getId = () => {
     return fetch('http://localhost:3010/')
       .then(res => res.json())
@@ -31,12 +30,23 @@ class App extends Component {
       })
   } 
 
-  getList_ = () => {
+  getList1 = () => {
     return fetch('http://localhost:3010/')
       .then(res => res.json())
       .then(data => {
-        console.log(this.props.getListItems(data[0].list));
-        return this.props.getListItems(data[0].list);
+        console.log('DATA', data[0].list)
+        let toMap = data[0].list;
+        console.log('REDUX', toMap.map((item) => {
+          return item.id;
+        }));
+        return this.props.getListItems(
+          toMap.map((item) => {
+            return item.id
+          }), toMap.map((item) => {
+            return item.text;
+          }), toMap.map((item) => {
+            return item.completed
+          }));
       })
   } 
 
@@ -84,16 +94,25 @@ getAmount = () => {
       .then(() => this.props.removePoint(what))
   }
 
+  // addaNote = (note, id) => {
+  //   fetch(`http://localhost:3010/addNote/${id}?target=${note}`, {
+  //     method: "PUT"
+  //   })
+  //     .then(console.log)
+  //     .then(() => this.props.addNote(what))
+  // }
+
 
 
 
 componentDidMount() {
   this.getScores_();
-  this.getList_();
+  this.getList1();
   this.getNotes_();
   this.getDonations_();
   this.getId();
   this.getAmount();
+  console.log('FIRST FETCH', this.props.list);
 }
 
   render() {
@@ -103,6 +122,7 @@ componentDidMount() {
       <Header />
       <Route exact path = "/" render = {  ( props ) => ( 
       <Homepage 
+        textList={this.props.textList}
       removePoint1 = {this.removePoint1}
         addPoint1 = {this.addPoint1}
         getId = {this.getId}
@@ -150,15 +170,13 @@ const mapDispatchToProps = dispatch => ({
   removePoint: (what) => dispatch(removePoint(what)),
 
   // list
-  getListItems: list => dispatch(getListItems(list)),
-  createListItem: listItem => dispatch(createListItem(listItem)),
+  getListItems: (id, text, completed) => dispatch(getListItems(id, text, completed)),
 
   // notes
   getNotes: notes => dispatch(getNotes(notes)),
-  createNote: note => dispatch(createNote(note)),
+
 
   // donations
-  createDonation: (amount, institution) => dispatch(createDonation(amount, institution)),
   getDonations: (amount, institution) => dispatch(getDonations(amount, institution)),
   // getAmount: (amount) => dispatch(getAmount(amount)),
 });
@@ -169,6 +187,9 @@ export default connect(
 )(App);
 
 
+// textList: state.list.map((item) => {
+//   return item.text;
+// })
 
 
 /*  getUserData = () => {
@@ -183,3 +204,39 @@ export default connect(
       })
   }    
  */
+
+
+       // return fetch('http://localhost:3010/')
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     console.log( 'DATA', data[0].list)
+    //     let toMap = data[0].list;
+    //     console.log('REDUX', toMap.map( (item) => {
+    //       return item.id;
+    //     }));
+    //   return this.props.getListItems(
+    //       toMap.map ( (item) => {
+    //         return item.id
+    //       }),toMap.map( (item) => {
+    //         return item.text;
+    //       }), toMap.map( (item) => {
+    //         return item.completed
+    //       }) );
+    //   })
+
+
+    //   getList1 = () => {
+//       return fetch('http://localhost:3010/').then(res => res.json())
+//       .then(data => {
+//         let toMap = data[0].list;
+//        return this.props.getListItems(
+//           toMap.map ( (item) => {
+//             return item.id
+//           }),toMap.map( (item) => {
+//             return item.text;
+//           }), toMap.map( (item) => {
+//             return item.completed }
+//           )
+//         )
+//   })
+// }

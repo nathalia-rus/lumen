@@ -19,26 +19,17 @@ const userSchema = new mongoose.Schema({
     smiles: { type: Number, default: 0 },
     donations: { type: Number, default: 0 },
   },
-  list: {
-    type: [String],
-    default: [
-      'add your ideas of kindess here :)',
-    ],
-  },
+  list: [{
+    id: String,
+    text: String,
+    completed: Boolean,
+  }],
   notes: {
-    type: [String],
-    default: [
-      'Revive a story of kindness you have experienced, seen, or took part in :) ',
-    ],
+    id: String,
+    text: String,
   },
   donations: {
     type: { amount: [Number], institution: [String] },
-    default: [
-      {
-        amount: [0],
-        institution: ['none for now'],
-      },
-    ],
   },
 });
 

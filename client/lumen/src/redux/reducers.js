@@ -6,7 +6,12 @@ const initialState = {
     smiles: 0,
     amount: 0
   },
-  list:[],
+  list: [ {
+    id: '',
+    text: '',
+    completed: ''
+  }
+  ],
   notes:[],
   donations: {
     amount: [],
@@ -51,9 +56,11 @@ const reducer = (state = initialState, action) => {
     case "GET_LIST_ITEMS":
     return {
       ...state,
-      list: [
-        ...action.list
-      ] 
+      list: [{
+        id: action.id,
+        text: action.text,
+        completed: action.completed
+      }]
     }
     case "GET_NOTES":
     return {

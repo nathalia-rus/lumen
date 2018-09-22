@@ -41,7 +41,7 @@ exports.removePoint = (id, what) => {
 
 exports.addListItem = (id, listItem) => {
   console.log(listItem);
-  db.User.where({ _id: id }).update({ $push: { list: listItem } });
+  db.User.where({ _id: id }).update({ $push: { text: listItem } });
 };
 
 exports.addNote = (id, note) => {
