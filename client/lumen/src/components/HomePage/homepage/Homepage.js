@@ -3,6 +3,7 @@ import MyList from '../list/MyList';
 import MyNotes from '../notes/MyNotes';
 import MyScores from '../scores/MyScores';
 import MyDonations from '../donations/MyDonations';
+import Header from '../header/Header'
 
 
 class Homepage extends Component {
@@ -18,6 +19,8 @@ this.props.list;
     render() {
  
         return (
+          <div> 
+          <Header />
           <div className="content"> 
             <MyScores 
             getId = {this.props.getId}
@@ -30,6 +33,7 @@ this.props.list;
             donations = {this.props.donations}
             getAmount={this.props.getAmount} />   
             </div>
+          </div>
         );
     }
 

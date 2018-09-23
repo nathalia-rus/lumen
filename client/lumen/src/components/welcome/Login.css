@@ -1,0 +1,107 @@
+.logingTitle{
+ color: white;
+  padding-left: 2px;
+  font-size: 20px;
+  font-weight: 200;
+  margin-left: 37%;
+  font-family: avenir next;
+   letter-spacing: 10px;
+   padding-bottom: 3.9%;
+}
+
+.welcome {
+ color: white;
+ font-family: avenir next; 
+ font-weight: 200;
+   font-size: 20px;
+  margin-left: 37%;
+  letter-spacing: 1px;
+}
+
+.logingLogo {
+  margin-top: 7%;
+  margin-left: 47%;
+  width: 8%;
+  height: 8%;
+}
+
+
+.loginInput{
+  margin-left: 25%;
+  width: 55%;
+  background-color: transparent;
+  border-bottom: 0.7px rgba(255, 255, 255, 0.815) solid;
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;
+  border-radius: 0cm;
+  margin-top:5%;
+
+}
+
+.profileLogo {
+  position: absolute;
+  width: 3%;
+  height: 3%;
+  margin-top: 5%;
+  margin-left: 15%;
+}
+
+.passwordLogo {
+  position: absolute;
+  width: 3.5%;
+  height: 2.3%;
+  margin-top: 15%;
+  margin-left: 15%;
+}
+
+.logingButton {
+  border-radius: 0.5cm;
+  background-color: transparent;
+  border: rgba(255, 255, 255, 0.658) solid 1px;
+  margin-top: 7%;
+  margin-left: 18%;
+  height: 0.8cm;
+  width: 62%;
+}
+
+.loginAlt {
+  color :white;
+  margin-top: 2%;
+  font-family: avenir next;
+  font-weight: 200;
+}
+
+.longLineLog {
+  display: absolute;
+  width: 30%;
+  margin-top: 7%;
+  height: 1px;
+  padding-left: 5%;
+  padding-right: 5%
+}
+
+.or {
+  color: white;
+  font-family: avenir next;
+  font-weight: 200;
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+#facebook {
+position: absolute;
+width: 43%;
+margin-left: 5%;
+padding-right: 2%;
+}
+
+#twitter {
+width: 43%;
+margin-left: 52%;
+}
+
+#signup {
+  margin-top: 3%;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../HomePage/list/MyList.css';
-import '../editlist/EditList.css'
+import '../editlist/EditList.css';
+import Header from '../../HomePage/header/Header'
 const add = require("../../../assets/add.png");
 const longLine = require("../../../assets/longLine.png")
 const hand = require("../../../assets/hand.svg")
@@ -27,6 +28,7 @@ class EditNotes extends Component {
   render() {
     return (
       <div>
+        <Header />
         <div className="content">
           <div className="notesContainer">
             <h3 className="subTitle"> kind memories</h3>

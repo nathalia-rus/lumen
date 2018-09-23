@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../HomePage/list/MyList.css';
 import './EditDonations.css';
+import Header from '../../HomePage/header/Header';
 const zip = require('lodash.zip');
 const longLine = require("../../../assets/longLine.png");
 const add = require("../../../assets/add.png");
@@ -13,7 +14,6 @@ class EditDonations extends Component {
           amout: 0
         };
     };
-
 
 
   componentDidMount() {
@@ -35,6 +35,7 @@ class EditDonations extends Component {
   render() {
     return (
       <div>
+        <Header/>
         <div className="content">
           <div className="notesContainer">
             <h3 className="subTitle"> kind donations</h3>
@@ -54,7 +55,7 @@ class EditDonations extends Component {
               <option value="7">7</option>
               <option value="8">8</option>
             </select>
-            <div id="formDonations">
+            <div id="formDonations" className = 'form'>
               <input placeholder="cause donated for" type="text" name="addItem" />
               <button type="submit" className="addItem" > <img alt='button' className="addButton" src={add} /> </button>
               <p className="addDonationP"> add </p>

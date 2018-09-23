@@ -32,6 +32,7 @@ renderDonations() {
   render() {
     return (
       <div>
+       
         <div className="subContainer">
           <h3 className="subTitle" id = "donationsText">your donations</h3>
           <Link to="/donations" >   <img alt='donations' className="addTo" src={add} /> </Link>

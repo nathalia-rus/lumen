@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../../HomePage/list/MyList.css';
-import './EditList.css'
+import Header from '../../HomePage/header/Header'
+import './EditList.css';
+
 const add = require("../../../assets/add.png");
 const longLine = require("../../../assets/longLine.png")
 
@@ -29,6 +31,7 @@ class EditList extends Component {
   render() {
     return (
       <div>
+        <Header/>
         <div className="content">  
           <div className="notesContainer">
           <h3 className="subTitle"> kind ideas</h3>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'; 
 /* import { PropsRoute, PublicRoute, PrivateRoute } from 'react-router-with-props'; */
 import '../App.css';
+import Login from '../components/welcome/Login';
 import Header from '../components/HomePage/header/Header';
 import Homepage from '../components/HomePage/homepage/Homepage' ;
 import EditList from '../components/Edits/editlist/EditList'
@@ -119,7 +120,9 @@ componentDidMount() {
     return (  
    <Router > 
     <div> 
-      <Header />
+          <Route exact path="/login" render={() =>
+            (<Login />)} /> 
+          
       <Route exact path = "/" render = {  ( props ) => ( 
       <Homepage 
         textList={this.props.textList}
