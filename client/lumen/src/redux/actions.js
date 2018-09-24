@@ -24,7 +24,6 @@ const getListItems = (list) => ({
   list
 });
 
-
  const addListItem = (listItem) => ({
   type: "ADD_LIST_ITEM",
   listItem
@@ -49,8 +48,6 @@ const getDonations = (amount, institution) => ({
   amount: amount,
   institution: institution
 })
-
-
 
 
 export { addNote, removePoint, addPoint, getScores, addListItem, getListItems, getNotes, getDonations  }

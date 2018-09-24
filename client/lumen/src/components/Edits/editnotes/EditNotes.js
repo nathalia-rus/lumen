@@ -8,22 +8,27 @@ const hand = require("../../../assets/hand.svg")
 
 
 class EditNotes extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: ''
+    };
+  };
+
+  componentDidMount() {
+    this.props.getId()
+      .then(res => this.setState({ id: res }))
+  }
 
   renderNotes() {
     return (this.props.notes.map(note => {
       return (
-        <div> <img className= "handLeft" src={hand} /> <p> {note} </p> </div>
+        <div> <img className= "handLeft" src={hand} /> <p> {note.text} </p> </div>
       )
     })
     )
   };
-
 
   render() {
     return (
@@ -51,17 +56,6 @@ class EditNotes extends Component {
     );
   }
 
-    componentDidMount() {
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-    }
-
-    componentWillUnmount() {
-    }
-
-    componentDidCatch(error, info) {
-    }
 }
 
 export default EditNotes;

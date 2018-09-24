@@ -49,6 +49,9 @@ class App extends Component {
       .then(res => res.json())
       .then(data => {
         console.log(this.props.getNotes(data[0].notes));
+        console.log('REDUX2', data[0].notes.map((item) => {
+          return item._id;
+        }));
         return this.props.getNotes(data[0].notes);
       })
   }
@@ -89,22 +92,14 @@ getAmount = () => {
   }
 
 
-  addListItem1 = (listItem, id) => {
+  addListItem1 = (text, id) => {
     console.log('here')
-    fetch(`http://localhost:3010/addListItem/${id}?target=${listItem}`, {
+    fetch(`http://localhost:3010/addListItem/${id}?target=${text}`, {
       method: "PUT"
     })
       .then(console.log)
-      .then(() => this.props.addListItem(listItem))
+      .then(() => this.props.addListItem(text))
   }
-
-  // addaNote = (note, id) => {
-  //   fetch(`http://localhost:3010/addNote/${id}?target=${note}`, {
-  //     method: "PUT"
-  //   })
-  //     .then(console.log)
-  //     .then(() => this.props.addNote(what))
-  // }
 
 
 
@@ -125,11 +120,10 @@ componentDidMount() {
     <div> 
           <Route exact path="/login" render={() =>
             (<Login />)} /> 
-          
       <Route exact path = "/" render = {  ( props ) => ( 
       <Homepage 
         textList={this.props.textList}
-      removePoint1 = {this.removePoint1}
+        removePoint1 = {this.removePoint1}
         addPoint1 = {this.addPoint1}
         getId = {this.getId}
         scores={this.props.scores}
@@ -144,15 +138,18 @@ componentDidMount() {
       ( <EditList
       list = {this.props.list}
       addListItem1 = {this.props.addListItem1}
+      getId={this.getId}
       />
       )} /> 
       <Route exact path="/notes" render={ ( props ) => 
         ( <EditNotes 
           notes = {this.props.notes}
+          getId={this.getId}
         />)} /> 
       <Route exact path="/donations" render={ ( props ) => 
         ( <EditDonations
         donations = {this.props.donations}
+        getId={this.getId}
          />)} /> 
     </div>
    </Router>  
@@ -178,11 +175,10 @@ const mapDispatchToProps = dispatch => ({
 
   // list
   getListItems: (id, text, completed) => dispatch(getListItems(id, text, completed)),
-  addListItem: (listItem) => dispatch(addListItem(listItem)),
+  addListItem: (text) => dispatch(addListItem(text)),
 
   // notes
   getNotes: notes => dispatch(getNotes(notes)),
-
 
   // donations
   getDonations: (amount, institution) => dispatch(getDonations(amount, institution)),
@@ -193,58 +189,3 @@ export default connect(
   mapStateToProps, 
   mapDispatchToProps
 )(App);
-
-
-// textList: state.list.map((item) => {
-//   return item.text;
-// })
-
-
-/*  getUserData = () => {
-    return fetch('http://localhost:3010/')
-      .then(res => res.json())
-      .then(data => {
-        console.log(data[0]);
-        this.props.getScores(data[0].scores);
-        this.props.getListItems(data[0].list);
-        this.props.getNotes(data[0].notes); // will be passed as arg (notes) in redux action
-        this.props.getDonations(data[0].donations);
-      })
-  }    
- */
-
-
-       // return fetch('http://localhost:3010/')
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     console.log( 'DATA', data[0].list)
-    //     let toMap = data[0].list;
-    //     console.log('REDUX', toMap.map( (item) => {
-    //       return item.id;
-    //     }));
-    //   return this.props.getListItems(
-    //       toMap.map ( (item) => {
-    //         return item.id
-    //       }),toMap.map( (item) => {
-    //         return item.text;
-    //       }), toMap.map( (item) => {
-    //         return item.completed
-    //       }) );
-    //   })
-
-
-    //   getList1 = () => {
-//       return fetch('http://localhost:3010/').then(res => res.json())
-//       .then(data => {
-//         let toMap = data[0].list;
-//        return this.props.getListItems(
-//           toMap.map ( (item) => {
-//             return item.id
-//           }),toMap.map( (item) => {
-//             return item.text;
-//           }), toMap.map( (item) => {
-//             return item.completed }
-//           )
-//         )
-//   })
-// }

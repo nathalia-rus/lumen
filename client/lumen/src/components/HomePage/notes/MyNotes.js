@@ -12,7 +12,7 @@ class MyNotes extends Component {
   renderNotes() {
     return (this.props.notes.map(note => {
         return (
-   <p> <img  alt = 'note' className="spark" src={spark} /> {note} </p>
+   <p> <img  alt = 'note' className="spark" src={spark} /> {note.text} </p>
   )
 })
 )};

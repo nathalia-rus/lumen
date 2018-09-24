@@ -7,7 +7,7 @@ const initialState = {
     amount: 0
   },
   list: [''],
-  notes:[],
+  notes:[''],
   donations: {
     amount: [],
     institution: []
@@ -61,10 +61,7 @@ const reducer = (state = initialState, action) => {
     case "GET_NOTES":
     return {
       ...state,
-      notes: [
-        ...action.notes
-      ]
- 
+      notes: action.notes
     };
     case "GET_DONATIONS":
     return {

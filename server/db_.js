@@ -24,10 +24,10 @@ const userSchema = new mongoose.Schema({
     text: String,
     completed: { type: Boolean, default: false },
   }],
-  notes: {
-    id: String,
+  notes: [{
+    id: Number,
     text: String,
-  },
+  }],
   donations: {
     type: { amount: [Number], institution: [String] },
   },
