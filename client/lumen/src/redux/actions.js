@@ -19,17 +19,14 @@ const removePoint = (what) => ({
 
 // list
 
-const getListItems = (id, text, completed) => ({
+const getListItems = (list) => ({
   type: "GET_LIST_ITEMS",
-  id,
-  text,
-  completed
+  list
 });
 
 
- const createListItem = (listItem) => ({
-  type: "CREATE_LIST_ITEM",
-  id: nextListItem++,
+ const addListItem = (listItem) => ({
+  type: "ADD_LIST_ITEM",
   listItem
 });
 
@@ -56,4 +53,4 @@ const getDonations = (amount, institution) => ({
 
 
 
-export { addNote, removePoint, addPoint, getScores, createListItem, getListItems, getNotes, getDonations  }
+export { addNote, removePoint, addPoint, getScores, addListItem, getListItems, getNotes, getDonations  }

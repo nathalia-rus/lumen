@@ -28,9 +28,7 @@ class MyScores extends Component {
         });
         this.props.getId()
           .then(res => this.setState({ id: res }))
-
       }
-    
 
     render() {
       

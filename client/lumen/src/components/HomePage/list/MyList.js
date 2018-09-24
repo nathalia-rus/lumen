@@ -6,16 +6,16 @@ const whiteLine = require("../../../assets/whiteLine.png");
 
 class MyList extends Component {
 
-  // renderList() {
-  //   let items = this.props.list;
-  //   console.log('LETS SEE', items[0].text[0])
-  //   return (items.map(item => {
-  //     return (
-  //       <p> 💡 {item.text} </p>
-  //     )
-  //   })
-  //   )
-  // };
+  renderList() {
+    let items = this.props.list;
+    // console.log('LETS SEE', items[0].text[0])
+    return (items.map(item => {
+      return (
+        <p> 💡 {item.text} </p>
+      )
+    })
+    )
+  };
 
    render() {
 
@@ -27,9 +27,12 @@ class MyList extends Component {
           <img alt='line' className="whiteLine" src={whiteLine} />
         </div>
         <div className="ListHome">
-          <p> 💡 {this.props.list[0].text[0]} </p> 
+          {this.renderList()}
+          { /*
+          <p> 💡 {this.props.list[0].text[0]}  </p>
           <p> 💡 {this.props.list[0].text[1]}  </p>
           <p> 💡 {this.props.list[0].text[2]}  </p> 
+          */ }
         </div>
       </div>
     );

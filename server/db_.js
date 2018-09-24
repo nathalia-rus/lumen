@@ -4,7 +4,7 @@ const dbURL = 'mongodb://localhost:27017/lumen';
 
 mongoose.connect(dbURL, { useNweUrlParser: true })
   .catch((e) => {
-    console.err(e);
+    console.error(e);
   });
 
 const db = mongoose.connection;
@@ -20,9 +20,9 @@ const userSchema = new mongoose.Schema({
     donations: { type: Number, default: 0 },
   },
   list: [{
-    id: String,
+    id: Number,
     text: String,
-    completed: Boolean,
+    completed: { type: Boolean, default: false },
   }],
   notes: {
     id: String,

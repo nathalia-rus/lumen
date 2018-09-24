@@ -2,7 +2,21 @@ const db = require('../db_');
 
 // GET ALL DATA
 
-exports.getUser = () => { 
+exports.getUser = () => {
+  // db.User.findOneAndUpdate(
+  //   {
+  //     _id: '5ba7e0b8de9381f69b1699fe'
+  //   },
+  //   {
+  //   list: [
+  //     {
+  //       text: 'fifth',
+  //     },
+  //     {
+  //       text: 'sixth',
+  //     },
+  //   ],
+  // }).exec();
   db.User.find().then(results => console.log(results));
   return db.User.find();
 };
@@ -39,9 +53,9 @@ exports.removePoint = (id, what) => {
   db.User.where({ _id: id }).update({ $inc: { scores: { [what]: -1 } } });
 };
 
-exports.addListItem = (id, listItem) => {
-  console.log(listItem);
-  db.User.where({ _id: id }).update({ $push: { text: listItem } });
+exports.addListItem = (id, textAdded) => {
+  console.log(textAdded);
+  db.User.where({ _id: id }).update({ $push: { list: { text: textAdded } } });
 };
 
 exports.addNote = (id, note) => {

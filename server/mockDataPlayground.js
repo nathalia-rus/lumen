@@ -35,19 +35,24 @@ console.log()
      donations: 10
    },
   list: [{
-    id: '1a',
+    id: 1,
     text: 'share my umbrella on a rainy day',
     completed: false,
   },
     {
-      id: '2a',
+      id: 2,
       text: 'anonymously send flowers to someone',
       completed: true,
     },
     {
-      id: '3a',
-      text: 'I remember that time when blah blah blah, I should defo do it again!',
+      id: 3,
+      text: 'Call mom and dad more often.',
       completed: false,
+    },
+    {
+     id: 4,
+     text: 'Water my flatmate\'s plants',
+     completed: true,
     }
 ],
   notes: [

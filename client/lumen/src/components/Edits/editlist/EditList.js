@@ -17,18 +17,42 @@ class EditList extends Component {
     }
 
 
+  // constructor(props) {
+  //   super(props);
+  //   this.state = [{
+  //     id: 0,
+  //     text: '',
+  //     completed: ''
+  //   }];
+  // };
+
+  // componentDidMount() {
+  //   fetch('http://localhost:3010/')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log('what is this:', this.props.scores.smiles)
+  //       this.setState({
+  //       })
+  //     });
+  //   this.props.getId()
+  //     .then(res => this.setState({ id: res }))
+  // }
+
+
+
   renderList() {
     return (this.props.list.map(listItem => {
       return (
-        <p> 💡 {listItem.text} </p>
+        <div>  <p> 💡 {listItem.text} </p> </div>
       )
     })
     )
-  };
-
+  }; 
+//  <div  onClick = { () => toggleTodo(listItem.id)}>  <p> 💡 {listItem.text} </p> </div>
 
 
   render() {
+   // console.log( 'HERE LAST', this.props.list[0].completed);
     return (
       <div>
         <Header/>
@@ -47,34 +71,29 @@ class EditList extends Component {
         <br/>
         <br/>
         <div className="listItems">
-          {this.renderList()}
+            {/*   <div onClick="console.log('CLICKED')">   <p> 💡 {this.props.list[0].text[0]} </p> </div>
+            <p> 💡 {this.props.list[0].text[1]} </p>
+            <p> 💡 {this.props.list[0].text[2]} </p>
+            {this.props.list[0].text[3] ? (<p> 💡  {this.props.list[0].text[3]} </p> ) : ' ' }
+            {this.props.list[0].text[4] ? (<p> 💡  {this.props.list[0].text[4]} </p>) : ' '}
+    {this.props.list[0].text[5] ? (<p> 💡  {this.props.list[0].text[5]} </p>) : ' '}  */}
+        
+         {this.renderList()} 
         </div>
 {/*           <img className="midLine" src={longLine} /> */}
           <br />
           <br />
           <div className="listItems" id= "listItemsDone">
-            <p> 🕊 share my umbrella on a rainy day </p>
-            <p> 🕊 anonymously send flowers to someone </p>
-            <p> 🕊 randomly buy an ice cream to a child </p>
-            <p> 🕊 share my umbrella on a rainy day </p>
-            <p> 🕊 anonymously send flowers to someone </p>
-            <p> 🕊 randomly buy an ice cream to a child </p>
+          {/*   {this.props.list[0].completed[0] === true ? (<p> 🕊  {this.props.list[0].text[0]} </p>) : ' '}
+            {this.props.list[0].completed[1] === true ? (<p> 🕊  {this.props.list[0].text[1]} </p>) : ' '}
+            {this.props.list[0].completed[2] === true ? (<p> 🕊  {this.props.list[0].text[2]} </p>) : ' '}
+            {this.props.list[0].completed[3] === true ? (<p> 🕊  {this.props.list[0].text[3]} </p>) : ' '} */}
           </div>
         </div>
       </div>
     );
   }
-    componentDidMount() {
-    }
 
-    componentDidUpdate(prevProps, prevState) {
-    }
-
-    componentWillUnmount() {
-    }
-
-    componentDidCatch(error, info) {
-    }
 }
 
 export default EditList;

@@ -9,7 +9,7 @@ import EditList from '../components/Edits/editlist/EditList'
 import EditNotes from '../components/Edits/editnotes/EditNotes';
 import EditDonations from '../components/Edits/editdonations/EditDonations';
 
-import { removePoint, addPoint, getScores, createListItem, getListItems, createNote, getNotes, createDonation, getDonations } from '../redux/actions';
+import { removePoint, addPoint, getScores, addListItem, getListItems, createNote, getNotes, createDonation, getDonations } from '../redux/actions';
 
 import { connect } from "react-redux"; 
 
@@ -38,16 +38,9 @@ class App extends Component {
         console.log('DATA', data[0].list)
         let toMap = data[0].list;
         console.log('REDUX', toMap.map((item) => {
-          return item.id;
+          return item._id;
         }));
-        return this.props.getListItems(
-          toMap.map((item) => {
-            return item.id
-          }), toMap.map((item) => {
-            return item.text;
-          }), toMap.map((item) => {
-            return item.completed
-          }));
+        return this.props.getListItems(toMap);
       })
   } 
 
@@ -95,6 +88,16 @@ getAmount = () => {
       .then(() => this.props.removePoint(what))
   }
 
+
+  addListItem1 = (listItem, id) => {
+    console.log('here')
+    fetch(`http://localhost:3010/addListItem/${id}?target=${listItem}`, {
+      method: "PUT"
+    })
+      .then(console.log)
+      .then(() => this.props.addListItem(listItem))
+  }
+
   // addaNote = (note, id) => {
   //   fetch(`http://localhost:3010/addNote/${id}?target=${note}`, {
   //     method: "PUT"
@@ -140,6 +143,7 @@ componentDidMount() {
       <Route exact path="/list" render={(props) => 
       ( <EditList
       list = {this.props.list}
+      addListItem1 = {this.props.addListItem1}
       />
       )} /> 
       <Route exact path="/notes" render={ ( props ) => 
@@ -174,6 +178,7 @@ const mapDispatchToProps = dispatch => ({
 
   // list
   getListItems: (id, text, completed) => dispatch(getListItems(id, text, completed)),
+  addListItem: (listItem) => dispatch(addListItem(listItem)),
 
   // notes
   getNotes: notes => dispatch(getNotes(notes)),
