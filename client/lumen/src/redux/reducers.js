@@ -53,15 +53,31 @@ const reducer = (state = initialState, action) => {
       ...state,
       list: action.list
     };
+    case "GET_NOTES":
+      return {
+        ...state,
+        notes: action.notes
+      };
     case "ADD_LIST_ITEMS":
       return {
         ...state,
-        list: action.listItem
+        list: [
+          ...state.list, 
+          { 
+            id: action.id,
+            text: action.text,
+            completed: false
+          } ]
       };
-    case "GET_NOTES":
+    case "ADD_NOTES":
     return {
       ...state,
-      notes: action.notes
+      notes: [ 
+        ...state.notes,
+         {
+           text: action.text,
+           id: action.id
+      }] 
     };
     case "GET_DONATIONS":
     return {

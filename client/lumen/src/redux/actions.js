@@ -1,6 +1,7 @@
 // scores
 
 let nextListItem = 0;
+let nextNote = 0;
 
 const getScores = scores => ({
   type: "GET_SCORES",
@@ -24,10 +25,15 @@ const getListItems = (list) => ({
   list
 });
 
- const addListItem = (listItem) => ({
-  type: "ADD_LIST_ITEM",
-  listItem
-});
+const addListItem = (text) => {
+  console.log('from actions:', text)
+  return {
+    type: "ADD_LIST_ITEMS",
+    text,
+    id: nextListItem++,
+    completed: false
+  }
+}
 
 // notes
 
@@ -36,10 +42,14 @@ const getNotes = notes => ({
   notes: notes
 })
 
-const addNote = (note) => ({
-  type: "ADD_NOTE",
-  note,
-})
+const addNote = (text) => {
+  console.log('ADD NOTE from actions:', text)
+  return {
+    type: "ADD_NOTES",
+    text,
+    id: nextNote++,
+  }
+}
 
 // donations
 

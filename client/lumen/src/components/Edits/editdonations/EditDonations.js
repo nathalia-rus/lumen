@@ -15,7 +15,6 @@ class EditDonations extends Component {
         };
     };
 
-
   componentDidMount() {
     fetch('http://localhost:3010/')
       .then(res => res.json())

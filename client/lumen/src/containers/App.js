@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 /* import { PropsRoute, PublicRoute, PrivateRoute } from 'react-router-with-props'; */
 import '../App.css';
 import Login from '../components/welcome/Login';
+import Profile from '../components/Profile/Profile'
 import Header from '../components/HomePage/header/Header';
 import Homepage from '../components/HomePage/homepage/Homepage' ;
 import EditList from '../components/Edits/editlist/EditList'
 import EditNotes from '../components/Edits/editnotes/EditNotes';
 import EditDonations from '../components/Edits/editdonations/EditDonations';
 
-import { removePoint, addPoint, getScores, addListItem, getListItems, createNote, getNotes, createDonation, getDonations } from '../redux/actions';
+import { removePoint, addPoint, getScores, addListItem, getListItems, addNote, getNotes, getDonations } from '../redux/actions';
 
 import { connect } from "react-redux"; 
 
@@ -37,9 +38,7 @@ class App extends Component {
       .then(data => {
         console.log('DATA', data[0].list)
         let toMap = data[0].list;
-        console.log('REDUX', toMap.map((item) => {
-          return item._id;
-        }));
+        console.log('DATA2', this.props.getListItems(toMap));
         return this.props.getListItems(toMap);
       })
   } 
@@ -48,10 +47,7 @@ class App extends Component {
     return fetch('http://localhost:3010/')
       .then(res => res.json())
       .then(data => {
-        console.log(this.props.getNotes(data[0].notes));
-        console.log('REDUX2', data[0].notes.map((item) => {
-          return item._id;
-        }));
+        console.log('IN NOTES', this.props.getNotes(data[0].notes));
         return this.props.getNotes(data[0].notes);
       })
   }
@@ -101,6 +97,15 @@ getAmount = () => {
       .then(() => this.props.addListItem(text))
   }
 
+  addNote1 = (text, id) => {
+    console.log('here')
+    fetch(`http://localhost:3010/addNote/${id}?target=${text}`, {
+      method: "PUT"
+    })
+      .then(console.log)
+      .then(() => this.props.addNote(text))
+  }
+
 
 
 
@@ -120,6 +125,8 @@ componentDidMount() {
     <div> 
           <Route exact path="/login" render={() =>
             (<Login />)} /> 
+          <Route exact path="/profile" render={() =>
+            (<Profile />)} /> 
       <Route exact path = "/" render = {  ( props ) => ( 
       <Homepage 
         textList={this.props.textList}
@@ -137,7 +144,7 @@ componentDidMount() {
       <Route exact path="/list" render={(props) => 
       ( <EditList
       list = {this.props.list}
-      addListItem1 = {this.props.addListItem1}
+      addListItem1 = {this.addListItem1}
       getId={this.getId}
       />
       )} /> 
@@ -145,6 +152,7 @@ componentDidMount() {
         ( <EditNotes 
           notes = {this.props.notes}
           getId={this.getId}
+          addNote1={this.addNote1}
         />)} /> 
       <Route exact path="/donations" render={ ( props ) => 
         ( <EditDonations
@@ -179,6 +187,7 @@ const mapDispatchToProps = dispatch => ({
 
   // notes
   getNotes: notes => dispatch(getNotes(notes)),
+  addNote: note => dispatch(addNote(note)),
 
   // donations
   getDonations: (amount, institution) => dispatch(getDonations(amount, institution)),
