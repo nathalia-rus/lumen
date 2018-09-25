@@ -8,10 +8,7 @@ const initialState = {
   },
   list: [''],
   notes:[''],
-  donations: {
-    amount: [],
-    institution: []
-  }
+  donations: ['']
 }
 
 const reducer = (state = initialState, action) => {
@@ -53,6 +50,37 @@ const reducer = (state = initialState, action) => {
       ...state,
       list: action.list
     };
+    case "DELETE_LIST_ITEM":
+      console.log('sgfhjshriufbhsehbfezigejqfbs',action.id)
+      return {
+        ...state,
+        list: state.list.filter( item => { return item.id !== action.id} )
+      };
+    case "DELETE_NOTE":
+      return {
+        ...state,
+        notes: state.notes.filter(item => { return item.id !== action.id })
+      };
+    case "DELETE_DONATION":
+      return {
+        ...state,
+        donations: state.donations.filter(item => { return item.id !== action.id })
+      };
+    case "TOGGLE_LIST_ITEM":
+      return {
+        ...state,
+        list: state.list.map(
+          item => { 
+          
+          if (item.id === action.id) {
+            return {
+              ...item,
+              completed: !item.completed
+            }
+          }
+          return { ...item}
+        })
+      };
     case "GET_NOTES":
       return {
         ...state,
@@ -63,10 +91,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         list: [
           ...state.list, 
-          { 
-            id: action.id,
+          {
             text: action.text,
-            completed: false
+            completed: false,
+            idRedux: action.idRedux
           } ]
       };
     case "ADD_NOTES":
@@ -82,19 +110,25 @@ const reducer = (state = initialState, action) => {
     case "GET_DONATIONS":
     return {
       ...state,
-      donations: {
-        amount: [
-          ...action.amount
-        ],
-        institution: [
-          ...action.institution
-        ]
-      }
-    }
+      donations: action.donations
+      };
+    case "ADD_DONATION":
+      return {
+        ...state,
+        donations: [
+          ...state.donations,
+          {
+            id: action.id,
+            institution: action.institution,
+            amount: action.amount,
+          }]
+      };
     default: 
     return state
   }
 };
+
+
 
 export default reducer;
 

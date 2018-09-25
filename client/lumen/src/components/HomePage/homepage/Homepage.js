@@ -26,12 +26,17 @@ this.props.list;
             getId = {this.props.getId}
             scores = {this.props.scores}
             addPoint1={this.props.addPoint1}
-            removePoint1={this.props.removePoint1} />
+            removePoint1={this.props.removePoint1}
+            getTotal={this.props.getTotal}
+            donations= {this.props.donations} />
             <MyList list = {this.props.list} />
-            <MyNotes notes ={ this.props.notes}/>
+            
             <MyDonations 
             donations = {this.props.donations}
-            getAmount={this.props.getAmount} />   
+            getAmount={this.props.getAmount}
+            getDonations1={this.getDonations1}
+            getTotal={this.props.getTotal} /> 
+              <MyNotes notes={this.props.notes} />  
             </div>
           </div>
         );

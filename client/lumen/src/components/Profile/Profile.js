@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../HomePage/header/Header'
+import ('../../App.css')
+const profilepic = require('../../assets/profile.png')
 
 class Profile extends Component {
     constructor(props) {
@@ -11,8 +13,9 @@ class Profile extends Component {
 
     render() {
         return (
-            <div>
+            <div >
               <Header/>
+              <img id = 'profilepic' src = {profilepic} />
             </div>
         );
     }

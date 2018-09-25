@@ -10,24 +10,44 @@ class MyDonations extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      amount: 0
+      amount: this.props.donations,
     }
   }
 
+  
+  // getTotal = () => {
+  //   let items = this.props.donations;
+  //   let toReduce = items.map((item) => {
+  //     return item.amount
+  //   });
+  //   return toReduce.reduce((total, amount) => total + amount);
+  // }
+
   componentDidMount() {
-    fetch('http://localhost:3010/')
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ amount: data[0].donations.amount.reduce((total, amount) => total + amount)})
-      })
+  // this.getTotal();
+  //  this.props.getDonations1()
+   // this.setState({ amount: data[0].donations.amount.reduce((total, amount) => total + amount)})
   }
- 
-renderDonations() {
-  let toMap = zip(Object.entries(this.props.donations)[0][1], Object.entries(this.props.donations)[1][1]);
-  return toMap.map( item => {
-    return (<p> 🌱 $<i> {item.join('   -   ') }  </i> </p >  )
-  })
-};
+
+  renderDonations = () => {
+    let items = this.props.donations;
+    // console.log('LETS SEE', items[0].text[0])
+    return (items.map(item => {
+      return (
+        <p> 🌱  {item.institution} - ${item.amount} </p>
+      )
+    })
+    )
+  };
+
+
+
+// renderDonations() {
+//   let toMap = zip(Object.entries(this.props.donations)[0][1], Object.entries(this.props.donations)[1][1]);
+//   return toMap.map( item => {
+//     return (<p> 🌱 $<i> {item.join('   -   ') }  </i> </p >  )
+//   })
+// };
 
   render() {
     return (
@@ -39,8 +59,8 @@ renderDonations() {
           <img alt = 'donations' className="whiteLine" id= "donationsLine" src={whiteLine} />
         </div>
         <div className="donationsList">
-           {this.renderDonations()} 
-          <p id="totalDonations"> 🕊 $ {this.state.amount} total </p>
+          {this.renderDonations()} 
+         {/*  <p id="totalDonations"> 🕊 $ {this.props.getTotal()} total </p> */}
         </div>
       </div>
     );

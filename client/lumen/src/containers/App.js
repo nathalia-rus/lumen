@@ -10,7 +10,7 @@ import EditList from '../components/Edits/editlist/EditList'
 import EditNotes from '../components/Edits/editnotes/EditNotes';
 import EditDonations from '../components/Edits/editdonations/EditDonations';
 
-import { removePoint, addPoint, getScores, addListItem, getListItems, addNote, getNotes, getDonations } from '../redux/actions';
+import { addDonation, deleteDonation, toggleListItem, deleteNote, deleteListItem, removePoint, addPoint, getScores, addListItem, getListItems, addNote, getNotes, getDonations } from '../redux/actions';
 
 import { connect } from "react-redux"; 
 
@@ -20,26 +20,35 @@ class App extends Component {
     return fetch('http://localhost:3010/') 
       .then(res => res.json())
       .then(data => {
+        if (!data[0]) {
+          console.log('not there yet')
+        }
+        else 
        return this.props.getScores(data[0].scores);
       })
   } 
+
   getId = () => {
     return fetch('http://localhost:3010/')
       .then(res => res.json())
       .then(data => {
-        console.log((data[0]._id));
-        return data[0]._id;
+        if ( !data[0]) {
+          console.log('not there yet')
+        }
+        else return data[0]._id;
       })
-  } 
+  }
 
   getList1 = () => {
     return fetch('http://localhost:3010/')
       .then(res => res.json())
       .then(data => {
-        console.log('DATA', data[0].list)
+        if (!data[0]) {
+          console.log('not there yet')
+        }
+        else {
         let toMap = data[0].list;
-        console.log('DATA2', this.props.getListItems(toMap));
-        return this.props.getListItems(toMap);
+        return this.props.getListItems(toMap);}
       })
   } 
 
@@ -47,17 +56,25 @@ class App extends Component {
     return fetch('http://localhost:3010/')
       .then(res => res.json())
       .then(data => {
+        if (!data[0]) {
+          console.log('not there yet')
+        }
+        else {
         console.log('IN NOTES', this.props.getNotes(data[0].notes));
-        return this.props.getNotes(data[0].notes);
+        return this.props.getNotes(data[0].notes);}
       })
   }
 
-  getDonations_ = () => {
+  getDonations1 = () => {
     return fetch('http://localhost:3010/')
     .then(res => res.json())
     .then(data => {
-     return this.props.getDonations(data[0].donations.amount, data[0].donations.institution)
-  //  return data[0].donations.amount
+     // console.log('HEREEEE', data[0].donations);
+      if (!data[0]) {
+        console.log('not there yet')
+      }
+      else  return this.props.getDonations(data[0].donations)
+
     } 
   )
 }
@@ -66,25 +83,27 @@ getAmount = () => {
   return fetch('http://localhost:3010/')
     .then(res => res.json())
     .then(data => {
+      if (!data[0]) {
+        console.log('not there yet')
+      }
+      else 
       return data[0].donations.amount })
 };
 
 
-  addPoint1 = (what, id) => {
-    fetch(`http://localhost:3010/addPoint/${id}?target=${what}`, {
+  addPoint1 = async (what, id) => {
+    this.props.addPoint(what);
+    await fetch(`http://localhost:3010/addPoint/${id}?target=${what}`, {
         method: "PUT"
       })
-      .then(console.log)
-      .then(() => this.props.addPoint(what))
+  
   }
 
-  removePoint1 = (what, id) => {
-    console.log('here')
-    fetch(`http://localhost:3010/removePoint/${id}?target=${what}`, {
+  removePoint1 = async (what, id) => {
+    this.props.removePoint(what)
+    await fetch(`http://localhost:3010/removePoint/${id}?target=${what}`, {
       method: "PUT"
     })
-      .then(console.log)
-      .then(() => this.props.removePoint(what))
   }
 
 
@@ -93,30 +112,64 @@ getAmount = () => {
     fetch(`http://localhost:3010/addListItem/${id}?target=${text}`, {
       method: "PUT"
     })
-      .then(console.log)
       .then(() => this.props.addListItem(text))
   }
 
   addNote1 = (text, id) => {
-    console.log('here')
     fetch(`http://localhost:3010/addNote/${id}?target=${text}`, {
       method: "PUT"
     })
-      .then(console.log)
       .then(() => this.props.addNote(text))
   }
 
+  addDonation1 = (iduser, amount, institution) => {
+    fetch(`http://localhost:3010/addDonation/${iduser}?myparam1=${amount}&myparam2=${institution}`, {
+      method: "PUT"
+    }).then(this.props.addDonation(amount, institution))
+  }
 
+  deleteListItem1 = (idUser, idList) => {
+    console.log('test',idUser, idList);
+    fetch(`http://localhost:3010/deleteListItem/${idUser}/${idList}`, {
+      method: "DELETE"
+    })
+      .then(() => this.props.deleteListItem(idList))
+   return  this.props.deleteListItem(idList)
+    }
+
+  deleteNote1 = (idUser, idNote) => {
+    fetch(`http://localhost:3010/deleteNote/${idUser}/${idNote}`, {
+      method: "DELETE"
+    })
+    return this.props.deleteNote(idNote);
+  }
+
+  deleteDonation1 = (idUser, idDonation) => {
+    fetch(`http://localhost:3010/deleteDonation/${idUser}/${idDonation}`, {
+      method: "DELETE"
+    })
+    return this.props.deleteDonation(idDonation);
+  }
+
+  toggleListItem1 = (id) => {
+    return this.props.toggleListItem(id)
+  }
+  
+  // getTotal = () => {
+  //   console.log(this.props.donations)
+  //   return this.props.donations.map((item) => {
+  //     return item.amount
+  //   }).reduce((total, amount) => total + amount);
+  // }
 
 
 componentDidMount() {
   this.getScores_();
   this.getList1();
   this.getNotes_();
-  this.getDonations_();
+  this.getDonations1();
   this.getId();
   this.getAmount();
-  console.log('FIRST FETCH', this.props.list);
 }
 
   render() {
@@ -139,6 +192,8 @@ componentDidMount() {
         list={this.props.list}
         notes = {this.props.notes}
         donations={this.props.donations}
+        getDonations1={this.getDonations1}
+        getTotal ={this.getTotal}
       />) 
       } /> 
       <Route exact path="/list" render={(props) => 
@@ -146,6 +201,8 @@ componentDidMount() {
       list = {this.props.list}
       addListItem1 = {this.addListItem1}
       getId={this.getId}
+      deleteListItem1={this.deleteListItem1}
+      toggleListItem1={this.toggleListItem1}
       />
       )} /> 
       <Route exact path="/notes" render={ ( props ) => 
@@ -153,11 +210,16 @@ componentDidMount() {
           notes = {this.props.notes}
           getId={this.getId}
           addNote1={this.addNote1}
+          deleteNote1 = {this.deleteNote1}
         />)} /> 
       <Route exact path="/donations" render={ ( props ) => 
         ( <EditDonations
-        donations = {this.props.donations}
+        donations={this.props.donations}
         getId={this.getId}
+        getDonations1 = {this.getDonations1}
+        getTotal={this.getTotal}
+        deleteDonation1={this.deleteDonation1}
+        addDonation1={this.addDonation1}
          />)} /> 
     </div>
    </Router>  
@@ -184,13 +246,17 @@ const mapDispatchToProps = dispatch => ({
   // list
   getListItems: (id, text, completed) => dispatch(getListItems(id, text, completed)),
   addListItem: (text) => dispatch(addListItem(text)),
-
+  deleteListItem: (id) => dispatch(deleteListItem(id)),
+  toggleListItem: (id) => dispatch(toggleListItem(id)),
   // notes
   getNotes: notes => dispatch(getNotes(notes)),
   addNote: note => dispatch(addNote(note)),
+  deleteNote: id => dispatch(deleteNote(id)),
 
   // donations
-  getDonations: (amount, institution) => dispatch(getDonations(amount, institution)),
+  getDonations: (donations) => dispatch(getDonations(donations)),
+  deleteDonation: (id) => dispatch(deleteDonation(id)),
+  addDonation: (amount, institution) => dispatch(addDonation(amount, institution)),
   // getAmount: (amount) => dispatch(getAmount(amount)),
 });
 

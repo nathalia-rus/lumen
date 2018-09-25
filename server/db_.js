@@ -29,40 +29,16 @@ const userSchema = new mongoose.Schema({
     text: String,
   }],
   donations: {
-    type: { amount: [Number], institution: [String] },
+    type: [{
+      id: Number,
+      amount: Number,
+      institution: String,
+    },
+    ],
   },
 });
 
 const User = mongoose.model('User', userSchema);
-console.log(userSchema.list);
-
-/*
-const nathalia = new User({
-  username: 'nathalia',
-  email: 'nathaliarus@live.fr',
-  scores: {
-    goodActions: 3,
-    smiles: 7,
-    donations: 10
-  },
-  list: [
-    'share my umbrella on a rainy day',
-    'anonymously send flowers to someone',
-    'I remember that time when blah blah blah, I should defo do it again!'
-  ],
-  notes: [
-    'Had a lovely time helping out refugees at the NGO',
-    'Taught English for children, it was fun, I really loved when blah blah blah',
-    'I remember that time when blah blah blah, I should defo do it again!',
-  ],
-  donations: {
-    amount: [5, 5],
-    institution: ['Amnesty International', 'Medecins sans frontières']
-  },
-});
-
-console.log(nathalia);
-nathalia.save(); */
 
 module.exports = {
   db, userSchema, User,

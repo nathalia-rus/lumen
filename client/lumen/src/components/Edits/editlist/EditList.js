@@ -12,7 +12,8 @@ class EditList extends Component {
         super(props);
         this.state = {
           id : '',
-          text: ''
+          text: '', 
+          completed: false 
         };
     };
 
@@ -26,7 +27,16 @@ class EditList extends Component {
     return (this.props.list.map(listItem => {
       if (listItem.completed === false ) {
       return (
-        <div>  <p> 💡 {listItem.text} </p> </div>
+        <div>  <p> 💡 
+          <span onClick={() => { this.toggle(listItem.id) }}  >
+          {listItem.text} 
+          </span> 
+        <span className='delete' 
+            onClick={() => { this.deletefromList(listItem.id) }} >
+         x 
+         </span>  
+         </p>  
+         </div>
       )
     } 
     })
@@ -36,18 +46,46 @@ class EditList extends Component {
   renderListDone() {
     return (this.props.list.map(listItem => {
       if (listItem.completed === true) {
-        return (<p> 🕊  {listItem.text} </p>)
+        
+        return (<div> 
+          <p> 🕊  
+            <span id="listItemsDone" onClick={() => { this.toggle(listItem.id) }} >  
+            {listItem.text}  </span>
+             <span className='delete' id='delete' 
+              onClick={() => { this.deletefromList(listItem.id)}}  > 
+             x 
+             </span> 
+             </p>
+              </div> )
       }
     })
     )
   }; 
 
+
+
   handleChange = (event) => {
     this.setState({ text: event.target.value })
   }
 
+  toggle = (id) => {
+    console.log(id);
+   return this.props.toggleListItem1(id)
+  }
+
+  getId = () => {
+    const newState = this.state;
+    return newState.id;
+    // this.setState( { id: event.target.})
+  }
+
+  deletefromList = async (id) => {
+   let idUser = await this.props.getId();
+    return this.props.deleteListItem1(idUser, id);
+  }
+
   render() {
-    console.log('AFTERMOUNTING', this.state.id)
+    console.log('AFTERMOUNTING', this.getId(), this.state.id)
     return (
       <div>
         <Header/>
@@ -73,7 +111,7 @@ class EditList extends Component {
 {/*           <img className="midLine" src={longLine} /> */}
           <br />
           <br />
-          <div className="listItems" id= "listItemsDone">
+          <div className="listItems">
             {this.renderListDone()}
 
           </div>

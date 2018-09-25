@@ -113,3 +113,11 @@
   width: 9%;
   height: 9%
 }
+
+.delete {
+  margin-left: 5%;
+}
+
+#delete {
+  text-decoration: line-through transparent;
+}

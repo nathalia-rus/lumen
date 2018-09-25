@@ -1,75 +1,83 @@
 const db = require('../db_');
 
 // GET ALL DATA
+let randomId = () => (Math.floor(Math.random() * 50) + Math.random());
 
 exports.getUser = () => {
-  // db.User.findOneAndUpdate(
-  //   {
-  //     _id: '5ba7e0b8de9381f69b1699fe',  
-  //   list: [
-  //     {
-  //       text: 'Get an icecream for a child by the beach',
-  //       completed: true,
-  //     },
-  //     {
-  //       text: 'Share my umbrella on a rainy day',
-  //     },
-  //     {
-  //       text: 'Call my parents more often',
-  //       completed: true,
-  //     },
-  //     {
-  //       text: 'Go volunteer for an NGO on wednesday',
-  //     },
-
-  //   ],
-  //     notes: [
-  //       {
-  //         text: 'Had a lovely time helping out refugees at the NGO, I made touching memories and met incredibly inspiring people'
-  //       },
-  //       {
-  //         text: 'Taught English for children, it was fun, I really loved when the children returned home all smiles and glad to have had fun while learning ton'
-  //       },
-  //         {
-  //         text: 'I hepled clean the Thames last week. It was a great adventure; the waters were sometimes deep and so many stuff were stuck in between rocks. It made me so much more conscious of where I put my stuff after consuming it -I would never ever leave it on the streets or in nature! Truly heartbreaking to see how it damages our environment. I should urge my friends to help cleaning the Thames as well, so they can experience the same realization. '
-  //       },
-  //     ],
-  // }).exec();
   db.User.find().then(results => console.log(results));
   return db.User.find();
 };
 
-// UPDATE / CREATE
-
-
-// exports.updateDonations = (id, req) => {
-//   db.User.update({ _id: id },
-//     {
-//       $push: {
-//         donations: {
-//           amount: req.body.data,
-//           institution: req.body.data,
-//         },
-//       },
-//     });
-// };
-
 // SCORES
 
-exports.addPoint = (id, what) => {
-  db.User.where({ _id: id }).update({ $inc: { scores: { [what]: 1 } } });
+exports.addPoint = async (id, what) => {
+  if (what === 'goodActions') {
+    await db.User.updateOne(
+      { _id: id },
+      { $inc: { 'scores.goodActions': 1 } },
+    );
+  } else if (what === 'smiles') {
+    await db.User.updateOne(
+      { _id: id },
+      { $inc: { 'scores.smiles': 1 } },
+    );
+  }
 };
 
-exports.removePoint = (id, what) => {
-  db.User.where({ _id: id }).update({ $inc: { scores: { [what]: -1 } } });
+exports.removePoint = async (id, what) => {
+  if (what === 'goodActions') {
+    await db.User.updateOne(
+      { _id: id },
+      { $inc: { 'scores.goodActions': -1 } },
+    );
+  } else if (what === 'smiles') {
+    await db.User.updateOne(
+      { _id: id },
+      { $inc: { 'scores.smiles': -1 } },
+    );
+  }
 };
 
 exports.addListItem = (id, textAdded) => {
-  console.log(textAdded);
-  db.User.where({ _id: id }).update({ $push: { list: { text: textAdded } } });
+  return db.User.update(
+    { _id: id },
+    { $push: { list: { text: textAdded, id: randomId() } } },
+  );
 };
 
-exports.addNote = (id, note) => {
-  console.log(note);
-  db.User.where({ _id: id }).update({ $push: { notes: note } });
+exports.addNote = (id, toAdd) => {
+  return db.User.update(
+    { _id: id },
+    { $push: { notes: { text: toAdd, id: randomId() } } },
+  );
+};
+
+exports.addDonation = (idUser, addAmount, addInstitution) => {
+  return db.User.updateOne(
+    { _id: idUser },
+    { $push: { donations: { id: randomId(), amount: addAmount, institution: addInstitution } } },
+  );
+};
+
+exports.deleteDonation = (req) => {
+  const { idUser, idDonation } = req.params;
+  return db.User.updateOne(
+    { _id: idUser },
+    { $pull: { donations: { id: idDonation } } },
+  );
+};
+
+exports.deleteListItem = (req) => {
+  const { idUser, idList } = req.params;
+  return db.User.updateOne(
+    { _id: idUser },
+    { $pull: { list: { id: idList } } },
+  );
+};
+exports.deleteNote = (req) => {
+  const { idUser, idNote } = req.params;
+  return db.User.updateOne(
+    { _id: idUser },
+    { $pull: { notes: { id: idNote } } },
+  );
 };

@@ -10,6 +10,10 @@ background-repeat: no-repeat;
 }
 
 
+#profilepic {
+   width: 102%;
+}
+
 .content {
   overflow-x: scroll;
   margin-top: 8em;

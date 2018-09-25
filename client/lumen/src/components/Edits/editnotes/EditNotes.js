@@ -26,7 +26,7 @@ class EditNotes extends Component {
     console.log('ERROR THERE',  this.props.notes)
     return (this.props.notes.map(note => {
       return (
-       <div> <img className= "handLeft" src={hand} /> <p> {note.text} </p> </div>
+       <div> <img className= "handLeft" src={hand} /> <p> {note.text} <span className = 'delete' onClick = {() => this.deleteNote(note.id)} > x </span></p> </div>
       )
     })
     )
@@ -34,6 +34,11 @@ class EditNotes extends Component {
 
   handleChange = (event) => {
     this.setState({ text: event.target.value })
+  }
+
+  deleteNote = async (id) => {
+    let idUser = await this.props.getId();
+    return this.props.deleteNote1(idUser, id)
   }
 
   render() {
