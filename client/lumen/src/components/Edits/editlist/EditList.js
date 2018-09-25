@@ -46,7 +46,6 @@ class EditList extends Component {
   renderListDone() {
     return (this.props.list.map(listItem => {
       if (listItem.completed === true) {
-        
         return (<div> 
           <p> 🕊  
             <span id="listItemsDone" onClick={() => { this.toggle(listItem.id) }} >  
@@ -62,15 +61,14 @@ class EditList extends Component {
     )
   }; 
 
-
-
   handleChange = (event) => {
     this.setState({ text: event.target.value })
   }
 
-  toggle = (id) => {
-    console.log(id);
-   return this.props.toggleListItem1(id)
+  toggle = async (idListItem) => {
+    let idUser = await this.props.getId();
+    console.log(idListItem);
+    return this.props.toggleListItem1(idListItem, idUser)
   }
 
   getId = () => {
@@ -113,7 +111,6 @@ class EditList extends Component {
           <br />
           <div className="listItems">
             {this.renderListDone()}
-
           </div>
         </div>
       </div>
@@ -123,27 +120,3 @@ class EditList extends Component {
 }
 
 export default EditList;
-
-// alternative to getId 
-
-    // fetch('http://localhost:3010/')
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     this.setState({ id : data[0]._id })
-    //   });
-
-//  <div  onClick = { () => toggleTodo(listItem.id)}>  <p> 💡 {listItem.text} </p> </div>
-
-  // <div onClick="console.log('CLICKED')">   <p> 💡 {this.props.list[0].text[0]} </p> </div>
-  //           <p> 💡 {this.props.list[0].text[1]} </p>
-  //           <p> 💡 {this.props.list[0].text[2]} </p>
-  //           {this.props.list[0].text[3] ? (<p> 💡  {this.props.list[0].text[3]} </p> ) : ' ' }
-  //           {this.props.list[0].text[4] ? (<p> 💡  {this.props.list[0].text[4]} </p>) : ' '}
-  //   {this.props.list[0].text[5] ? (<p> 💡  {this.props.list[0].text[5]} </p>) : ' '}  
-
-  //  {this.props.list[0].completed[0] === true ? (<p> 🕊  {this.props.list[0].text[0]} </p>) : ' '}
-  //           {this.props.list[0].completed[1] === true ? (<p> 🕊  {this.props.list[0].text[1]} </p>) : ' '}
-  //           {this.props.list[0].completed[2] === true ? (<p> 🕊  {this.props.list[0].text[2]} </p>) : ' '}
-  //           {this.props.list[0].completed[3] === true ? (<p> 🕊  {this.props.list[0].text[3]} </p>) : ' '} 
-
-

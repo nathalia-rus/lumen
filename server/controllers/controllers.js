@@ -20,6 +20,8 @@ exports.deleteNote = async (req, res) => {
   return res.sendStatus(200);
 };
 
+
+
 exports.addPoint = async (req, res) => {
   // const err = await model.addPoint(req).catch(() => true);
   // if (err) return res.sendStatus(500);
@@ -42,6 +44,12 @@ exports.addDonation = async (req, res) => {
   const { myparam1, myparam2 } = req.query;
   const { id } = req.params;
   await model.addDonation(id, myparam1, myparam2);
+  return res.sendStatus(200);
+};
+
+exports.toggleListItem = async (req, res) => {
+  const { iduser, id } = req.params;
+  await model.toggleListItem(iduser, id);
   return res.sendStatus(200);
 };
 

@@ -134,7 +134,6 @@ getAmount = () => {
       method: "DELETE"
     })
       .then(() => this.props.deleteListItem(idList))
-   return  this.props.deleteListItem(idList)
     }
 
   deleteNote1 = (idUser, idNote) => {
@@ -151,8 +150,12 @@ getAmount = () => {
     return this.props.deleteDonation(idDonation);
   }
 
-  toggleListItem1 = (id) => {
-    return this.props.toggleListItem(id)
+  toggleListItem1 = (id, idUser) => {
+    console.log('HERRRRRE', id, idUser)
+    this.props.toggleListItem(id);
+    fetch(`http://localhost:3010/toggleListItem/${idUser}/${id}`, {
+      method: "PUT"
+    })
   }
   
   // getTotal = () => {
