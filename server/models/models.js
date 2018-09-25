@@ -67,15 +67,14 @@ exports.deleteDonation = (req) => {
   );
 };
 
-
-exports.toggleListItem = async (idUser, idListItem ) => {
-  const user = await db.User.findOne({ _id: idUser })
-  const newList = user.list.map(el => {
+exports.toggleListItem = async (idUser, idListItem) => {
+  const user = await db.User.findOne({ _id: idUser });
+  const newList = user.list.map((el) => {
     if (Number(el.id) === Number(idListItem)) {
-      el.completed = !el.completed
+      el.completed = !el.completed;
     }
-    return el
-  })
+    return el;
+  });
   await db.User.updateOne({ _id: idUser }, { list: newList })
 };
 
@@ -93,9 +92,3 @@ exports.deleteNote = (req) => {
     { $pull: { notes: { id: idNote } } },
   );
 };
-
-
-  // await db.User.updateOne(
-  //  { _id: idUser, list: { id: idListItem } },
-  //  { $set: { list: { completed: !false } } },
-  // );

@@ -151,20 +151,11 @@ getAmount = () => {
   }
 
   toggleListItem1 = (id, idUser) => {
-    console.log('HERRRRRE', id, idUser)
     this.props.toggleListItem(id);
     fetch(`http://localhost:3010/toggleListItem/${idUser}/${id}`, {
       method: "PUT"
     })
   }
-  
-  // getTotal = () => {
-  //   console.log(this.props.donations)
-  //   return this.props.donations.map((item) => {
-  //     return item.amount
-  //   }).reduce((total, amount) => total + amount);
-  // }
-
 
 componentDidMount() {
   this.getScores_();
@@ -267,3 +258,11 @@ export default connect(
   mapStateToProps, 
   mapDispatchToProps
 )(App);
+
+
+  // getTotal = () => {
+  //   console.log(this.props.donations)
+  //   return this.props.donations.map((item) => {
+  //     return item.amount
+  //   }).reduce((total, amount) => total + amount);
+  // }
