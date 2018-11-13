@@ -1,6 +1,6 @@
 # lumen
 
-A web-app which inspires you to do good: track your actions, brainstorm good things to do, keep a diary of those positive experiences. 
+A web-app which inspires you to do good: track your actions and donations, brainstorm good things to do, keep a diary of those positive experiences. 
 Full-stack: React-Redux, Node js (express), Mongodb.
 
 ## Home
@@ -14,4 +14,8 @@ Full-stack: React-Redux, Node js (express), Mongodb.
 ## Notes 
 
 ![notes](https://user-images.githubusercontent.com/26336692/48440362-037f2480-e789-11e8-94f4-621692668f06.png)
+
+## Donations 
+
+![donations](https://user-images.githubusercontent.com/26336692/48440530-67095200-e789-11e8-903b-bffd7f1bcc36.png)
 
